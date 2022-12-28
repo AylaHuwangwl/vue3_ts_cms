@@ -1,0 +1,18 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.web.json", //继承自这个文件
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"], //告诉哪些文件需要编译
+  "compilerOptions": {
+    // 配置别名
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "noImplicitAny": false
+  },
+
+  "references": [
+    {
+      "path": "./tsconfig.config.json"
+    }
+  ]
+}
