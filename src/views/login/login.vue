@@ -3,8 +3,8 @@
     <LoginPanel></LoginPanel>
   </div>
 </template>
-
 <script setup lang="ts">
+// 家
 import LoginPanel from './c-cpns/login-panel.vue'
 </script>
 
