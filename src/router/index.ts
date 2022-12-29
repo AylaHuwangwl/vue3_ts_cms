@@ -1,10 +1,8 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Login from '@/views/login/login.vue'
-import Main from '@/views/main/main.vue'
-import NotFound from '@/views/not-found/not-found.vue'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(),
+  // 映射关系: path => component
   routes: [
     {
       path: '/',
@@ -12,15 +10,15 @@ const router = createRouter({
     },
     {
       path: '/login',
-      component: Login
+      component: () => import('../views/login/login.vue')
     },
     {
       path: '/main',
-      component: Main
+      component: () => import('../views/main/main.vue')
     },
     {
       path: '/:pathMatch(.*)',
-      component: NotFound
+      component: () => import('../views/not-found/not-found.vue')
     }
   ]
 })
