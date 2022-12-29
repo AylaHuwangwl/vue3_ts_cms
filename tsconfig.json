@@ -1,13 +1,15 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json", //继承自这个文件
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"], //告诉哪些文件需要编译
+  // "auto-imports.d.ts", "components.d.ts"这两个是自动导入element-plus引用到的组件，但是反馈类的组件没办法自动导入
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "auto-imports.d.ts", "components.d.ts"], //告诉哪些文件需要编译
   "compilerOptions": {
     // 配置别名
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "types": ["element-plus/global"]
   },
 
   "references": [

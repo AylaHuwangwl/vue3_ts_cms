@@ -1,3 +1,4 @@
+// 针对打包相关配置在这个文件，针对开发时配置在tsconfig.json修改
 {
   "extends": "@vue/tsconfig/tsconfig.node.json",
   "include": ["vite.config.*", "vitest.config.*", "cypress.config.*", "playwright.config.*"],
