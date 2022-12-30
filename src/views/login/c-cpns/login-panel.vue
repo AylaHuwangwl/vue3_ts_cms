@@ -40,12 +40,14 @@
 import { ref } from 'vue'
 import LoginPhone from './loginPhone.vue'
 import LoginAccount from './loginAccount.vue'
+import router from '@/router'
 const isRemPwd = ref(false)
 const activeLoginType = ref('account')
 const accountref = ref<InstanceType<typeof LoginAccount>>()
 function loginAction() {
   if (activeLoginType.value == 'account') {
     accountref.value?.loginAction()
+    router.push('/main')
   } else {
     console.log('手机号登录')
   }

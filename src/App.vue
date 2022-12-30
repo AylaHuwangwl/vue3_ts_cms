@@ -8,6 +8,11 @@
 </template>
 
 <script setup lang="ts">
+// import { localCache } from '@/utils/cache'
+// import userLoginStore from '@/store/login/login'
+// import { LOGIN_TOKEN } from '@/global/constances'
+// // localCache.removeCache(LOGIN_TOKEN)
+// console.log(userLoginStore().token)
 </script>
 <style scoped>
 .app {
