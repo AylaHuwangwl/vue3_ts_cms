@@ -17,7 +17,7 @@ if (import.meta.env.PROD) {
 }
 
 // 3.通过创建.env文件直接创建变量,加上.local不会放到git仓库  env.development.local
-console.log(import.meta.env.VITE_URL)
+// console.log(import.meta.env.VITE_URL)
 
 export const TIME_OUT = 10000
 export { BASE_URL }

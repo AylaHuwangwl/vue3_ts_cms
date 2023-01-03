@@ -5,8 +5,11 @@
         <el-input />
       </el-form-item>
       <el-form-item label="验证码">
-        <el-input />
-        <el-button type="primary">获取验证码</el-button>
+        <div class="verity-code">
+          <el-input />
+          <el-button type="primary" class="btn_code">获取验证码</el-button>
+        </div>
+
       </el-form-item>
     </el-form>
   </div>
@@ -16,6 +19,10 @@
 </script>
 
 <style lang="less" scoped>
-.phone {
+.verity-code {
+  display: flex;
+  .btn_code {
+    margin-left: 8px;
+  }
 }
 </style>

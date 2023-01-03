@@ -6,3 +6,8 @@ export function loginAccountRequest(account: IAccount) {
     data: account
   })
 }
+export function getUserInfo(id: number) {
+  return hyRequest.get({
+    url: `/users/${id}`
+  })
+}

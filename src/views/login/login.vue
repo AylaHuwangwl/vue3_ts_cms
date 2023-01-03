@@ -4,7 +4,7 @@
   </div>
 </template>
 <script setup lang="ts">
-// 家
+// RBAC:数据库（基于角色的访问控制）
 import LoginPanel from './c-cpns/login-panel.vue'
 </script>
 
