@@ -13,7 +13,7 @@ import { localCache } from '@/utils/cache'
 function handleLogout() {
   // 删除Token
   localCache.removeCache(LOGIN_TOKEN)
-  // 跳转到登陆页面
+
   router.push('/login')
 }
 </script>

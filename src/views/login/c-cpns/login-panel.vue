@@ -1,7 +1,7 @@
 <template>
   <div class="login-panel">
     <!-- <h2>login-panel</h2> -->
-    <h1 class="title">Ayla后台管理系统</h1>
+    <!-- <h1 class="title">Ayla后台管理系统</h1> -->
     <div class="tabs">
       <el-tabs type="border-card" stretch v-model="activeLoginType">
         <el-tab-pane name="account">
@@ -29,28 +29,33 @@
       </el-tabs>
     </div>
     <div class="control-account">
-      <el-checkbox v-model="isRemPwd" label="记住密码" size="large" />
+      <el-checkbox v-model="isRemPwd" label="记住密码" size="large" @change="watchIsRemPwd" />
       <el-link type="primary">忘记密码</el-link>
     </div>
     <el-button type="primary" class="login-btn" size="large" @click="loginAction">立即登录</el-button>
   </div>
 </template>
 
+
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import LoginPhone from './loginPhone.vue'
 import LoginAccount from './loginAccount.vue'
 import router from '@/router'
-const isRemPwd = ref(false)
+import { localCache } from '@/utils/cache'
 const activeLoginType = ref('account')
 const accountref = ref<InstanceType<typeof LoginAccount>>()
+const isRemPwd = ref<boolean>(false)
 function loginAction() {
   if (activeLoginType.value == 'account') {
-    accountref.value?.loginAction()
+    accountref.value?.loginAction(isRemPwd.value)
     router.push('/main')
   } else {
     console.log('手机号登录')
   }
+}
+function watchIsRemPwd() {
+  localCache.setCache('isRemPwd', isRemPwd)
 }
 </script>
 
