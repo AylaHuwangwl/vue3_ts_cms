@@ -54,7 +54,6 @@ function loginAction() {
   elformValidate.value?.validate((valid) => {
     if (valid) {
       // console.log('验证成功')
-      console.log(userLoginStore().token)
 
       const name = account.name
       const password = account.password
