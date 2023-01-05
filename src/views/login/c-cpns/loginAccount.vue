@@ -53,7 +53,7 @@ const accountrules: FormRules = {
   ]
 }
 const elformValidate = ref<InstanceType<typeof ElForm>>()
-function loginAction(isRemPwd: Boolean) {
+function loginAction(isRemPwd: boolean) {
   // console.log(account)
   elformValidate.value?.validate((valid) => {
     if (valid) {

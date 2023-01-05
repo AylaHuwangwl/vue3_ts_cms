@@ -10,9 +10,8 @@ const hyRequest = new HYRequest({
     requestSuccessFn: (config) => {
       // config
       const token = localCache.getCache(LOGIN_TOKEN)
-      console.log(token)
       if (token && config.headers) {
-        config.headers.Authorization = 'Bearer' + token
+        config.headers.Authorization = `Bearer ${token}`
       }
       return config
     }

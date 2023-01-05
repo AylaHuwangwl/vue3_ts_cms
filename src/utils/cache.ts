@@ -18,6 +18,8 @@ class Cache {
     const value = this.storage.getItem(key)
     if (value) {
       return JSON.parse(value)
+    } else {
+      return ''
     }
   }
   removeCache(key: string) {

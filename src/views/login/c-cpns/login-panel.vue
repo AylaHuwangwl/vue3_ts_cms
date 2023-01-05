@@ -29,7 +29,7 @@
       </el-tabs>
     </div>
     <div class="control-account">
-      <el-checkbox v-model="isRemPwd" label="记住密码" size="large" @change="watchIsRemPwd" />
+      <el-checkbox v-model="isRemPwd" label="记住密码" size="large" />
       <el-link type="primary">忘记密码</el-link>
     </div>
     <el-button type="primary" class="login-btn" size="large" @click="loginAction">立即登录</el-button>
@@ -41,21 +41,23 @@
 import { ref, watch } from 'vue'
 import LoginPhone from './loginPhone.vue'
 import LoginAccount from './loginAccount.vue'
-import router from '@/router'
+import router from '@/router/index'
 import { localCache } from '@/utils/cache'
 const activeLoginType = ref('account')
 const accountref = ref<InstanceType<typeof LoginAccount>>()
-const isRemPwd = ref<boolean>(false)
+const isRemPwd = ref(JSON.parse(localStorage.getItem('rem_pwd')) ?? false)
+watch(isRemPwd, (newValue) => {
+  localStorage.setItem('rem_pwd', JSON.stringify(newValue))
+  // console.log(typeof JSON.parse(localStorage.getItem('rem_pwd') ?? ''))
+})
 function loginAction() {
   if (activeLoginType.value == 'account') {
     accountref.value?.loginAction(isRemPwd.value)
     router.push('/main')
+    // console.log(router.push('/main'))
   } else {
     console.log('手机号登录')
   }
-}
-function watchIsRemPwd() {
-  localCache.setCache('isRemPwd', isRemPwd)
 }
 </script>
 

@@ -16,7 +16,11 @@ const router = createRouter({
     },
     {
       path: '/main',
+      name: 'main',
       component: () => import('../views/main/main.vue')
+      // children: [
+
+      // ]
     },
     {
       path: '/:pathMatch(.*)',
@@ -24,6 +28,26 @@ const router = createRouter({
     }
   ]
 })
+const localroute = [
+  {
+    path: '/main/analysis/dashboard',
+    component: () => import('../views/main/analysis/dashboard/dashboard.vue')
+  },
+  {
+    path: '/main/analysis/overview',
+    component: () => import('../views/main/analysis/overview/overview.vue')
+  },
+  {
+    path: '/main/system/role',
+    component: () => import('../views/main/system/role/role.vue')
+  },
+  {
+    path: '/main/system/user',
+    component: () => import('../views/main/system/user/user.vue')
+  }
+]
+// router.addRoute('main', localroute[0])
+// router.addRoute('main', localroute[1])
 // 导航首位，当跳转到main页面没有登陆时要先跳转到登陆页面
 router.beforeEach((to, from) => {
   const token = localCache.getCache(LOGIN_TOKEN)

@@ -11,3 +11,8 @@ export function getUserInfo(id: number) {
     url: `/users/${id}`
   })
 }
+export function getUserMenu(id: number) {
+  return hyRequest.get({
+    url: `/role/${id}/menu`
+  })
+}
