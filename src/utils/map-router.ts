@@ -15,8 +15,10 @@ export function mapRouterToMenu(usermenu: any[]) {
     item.children.find((ele: any) => {
       const localRouter = allRouter.find((routeritem) => {
         routeritem.path === ele.url
-        router.addRoute('main', routeritem)
       })
+      if (localRouter) {
+        router.addRoute('main', localRouter)
+      }
     })
   })
 }
