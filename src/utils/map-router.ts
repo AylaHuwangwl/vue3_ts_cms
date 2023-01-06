@@ -12,12 +12,11 @@ export function mapRouterToMenu(usermenu: any[]) {
   // const user_menu = localCache.getCache('usermenu')
   // 拿到路由信息中包含菜单信息中的路由
   usermenu.forEach((item: any, index: number) => {
-    item.children.find((ele: any) => {
-      const localRouter = allRouter.find((routeritem) => {
-        routeritem.path === ele.url
-      })
+    item.children.forEach((ele: any) => {
+      const localRouter = allRouter.find((routeritem) => routeritem.path === ele.url)
       if (localRouter) {
         router.addRoute('main', localRouter)
+        console.log(router.currentRoute)
       }
     })
   })
