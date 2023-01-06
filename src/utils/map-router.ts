@@ -16,7 +16,7 @@ export function mapRouterToMenu(usermenu: any[]) {
       const localRouter = allRouter.find((routeritem) => routeritem.path === ele.url)
       if (localRouter) {
         router.addRoute('main', localRouter)
-        console.log(router.currentRoute)
+        // console.log(router.currentRoute)
       }
     })
   })

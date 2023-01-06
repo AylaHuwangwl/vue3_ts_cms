@@ -16,8 +16,8 @@ const userLoginStore = defineStore('login', {
   state: (): Iuserinfostore => ({
     // id: '',
     token: localCache.getCache(LOGIN_TOKEN) ?? '',
-    userinfo: {},
-    usermenu: []
+    userinfo: localCache.getCache('userinfo') ?? {},
+    usermenu: localCache.getCache('usermenu') ?? []
     // name: ''
   }),
   actions: {
@@ -39,13 +39,23 @@ const userLoginStore = defineStore('login', {
       // 不定义Iuserinfostore接口直接写会报错
 
       // 映射菜单信息和路由封装成一个函数
-      mapRouterToMenu(user_menu)
+      // mapRouterToMenu(user_menu)
       // 存储用户信息
       localCache.setCache('userinfo', user_info)
       localCache.setCache('usermenu', user_menu)
     },
     // 保存路由信息，刷新时路由信息仍保留
-    saveRouterInfo() {}
+    saveRouterInfo() {
+      const token = localCache.getCache(LOGIN_TOKEN);
+      const userinfo = localCache.getCache('userinfo');
+      const usermenu = localCache.getCache('usermenu');
+      if(token && userinfo && usermenu){
+        this.token = token;
+        this.userinfo = userinfo;
+        this.usermenu = usermenu;
+        mapRouterToMenu(usermenu);
+      }
+    }
   }
 })
 export default userLoginStore
