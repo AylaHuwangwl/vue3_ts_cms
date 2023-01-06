@@ -2,7 +2,7 @@
   <div class="header-info">
     <div class="operation">
       <span>
-        <el-icon size="18px">
+        <el-icon size="18px">·
           <Bell />
         </el-icon>
       </span>

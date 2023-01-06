@@ -1,6 +1,8 @@
 import type { RouteRecordRaw } from 'vue-router'
 // import { localCache } from './cache'
 import router from '@/router'
+import user from '@/router/main/system/user/user';
+export let firstMenu:any = [];
 export function mapRouterToMenu(usermenu: any[]) {
   const file: Record<string, any> = import.meta.glob('@/router/main/**/*.ts', { eager: true })
   const allRouter: RouteRecordRaw[] = []
@@ -16,8 +18,23 @@ export function mapRouterToMenu(usermenu: any[]) {
       const localRouter = allRouter.find((routeritem) => routeritem.path === ele.url)
       if (localRouter) {
         router.addRoute('main', localRouter)
+        if(!firstMenu.length){
+          firstMenu.push(ele)
+        }
         // console.log(router.currentRoute)
       }
     })
   })
+}
+/**
+ *
+ */
+export function mapMenuToRouter(path:string,usermenu:any){
+  for(let item of usermenu){
+    for(let ele of item.children){
+      if(ele.url === path){
+        return ele
+      }
+    }
+  }
 }

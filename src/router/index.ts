@@ -1,9 +1,7 @@
 import { localCache } from '@/utils/cache'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { LOGIN_TOKEN } from '@/global/constances'
-import { formContextKey } from 'element-plus'
-import { mapRouterToMenu } from '@/utils/map-router'
-
+import { firstMenu } from '@/utils/map-router'
 const router = createRouter({
   history: createWebHashHistory(),
   // 映射关系: path => component
@@ -52,14 +50,14 @@ router.beforeEach((to, from) => {
   const token = localCache.getCache(LOGIN_TOKEN)
   const user_menu = localCache.getCache('usermenu')
   const user_info = localCache.getCache('userinfo')
-  if (to.path == '/main' && !token) {
+  if (to.path.startsWith('/main')  && !token) {
     to.path = '/login'
     // return '/login'
   }
-  // 当页面刷新时保存路由信息
-  if (token && user_menu && user_info) {
-    const usermenu = localCache.getCache('usermenu')
-    mapRouterToMenu(usermenu)
+  // 登陆后进入'/main'页面或者手动输入/main路径，此时path是/main,定向到动态路由的第一个
+  if(to.path == '/main' && token){
+    return firstMenu[0].url
   }
+  //
 })
 export default router

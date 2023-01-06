@@ -5,7 +5,7 @@
       <span v-if="!isFold">Ayla小黄人</span>
     </div>
     <div class="menu_cms">
-      <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" background-color="#001529" text-color="white" :collapse="isFold">
+      <el-menu :default-active="defaultActive" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" background-color="#001529" text-color="white" :collapse="isFold">
         <template v-for="item in u_menu">
           <el-sub-menu :index="item.id +''">
             <template #title>
@@ -27,7 +27,10 @@
 <script setup lang="ts">
 // import userLoginStore from '@/store/login/login'
 import { localCache } from '@/utils/cache'
-import { useRouter } from 'vue-router'
+import { ref } from '@vue/reactivity'
+import { useRouter,useRoute } from 'vue-router'
+import { firstMenu } from '@/utils/map-router';
+import { mapMenuToRouter } from '@/utils/map-router'
 function handleOpen() {}
 function handleClose() {}
 // const loginStore = userLoginStore()
@@ -40,11 +43,21 @@ defineProps({
   isFold: { type: Boolean, default: false }
 })
 const u_menu = localCache.getCache('usermenu')
+
+// 获取默认的菜单、
 const router = useRouter()
+const route = useRoute()
+const currentMenu = mapMenuToRouter(route.path,u_menu)
+console.log(route.path);
+
+const defaultActive = ref((currentMenu.id+''?currentMenu.id+'':firstMenu[0].id))
+
+// 点击菜单跳转
 function handleItemClick(ele: any) {
-  // console.log(ele)
   router.push(ele.url)
 }
+// 根据路由获取对应菜单
+
 </script>
 
 <style lang="less" scoped>
