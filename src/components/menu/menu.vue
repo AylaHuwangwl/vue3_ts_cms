@@ -28,9 +28,10 @@
 // import userLoginStore from '@/store/login/login'
 import { localCache } from '@/utils/cache'
 import { ref } from '@vue/reactivity'
-import { useRouter,useRoute } from 'vue-router'
-import { firstMenu } from '@/utils/map-router';
+import { useRouter, useRoute } from 'vue-router'
+import { firstMenu } from '@/utils/map-router'
 import { mapMenuToRouter } from '@/utils/map-router'
+import { computed } from 'vue'
 function handleOpen() {}
 function handleClose() {}
 // const loginStore = userLoginStore()
@@ -47,17 +48,15 @@ const u_menu = localCache.getCache('usermenu')
 // 获取默认的菜单、
 const router = useRouter()
 const route = useRoute()
-const currentMenu = mapMenuToRouter(route.path,u_menu)
-console.log(route.path);
-
-const defaultActive = ref((currentMenu.id+''?currentMenu.id+'':firstMenu[0].id))
-
+const defaultActive = computed(() => {
+  const currentMenu = mapMenuToRouter(route.path, u_menu)
+  return currentMenu.id + '' ? currentMenu.id + '' : firstMenu[0].id
+})
 // 点击菜单跳转
 function handleItemClick(ele: any) {
   router.push(ele.url)
 }
 // 根据路由获取对应菜单
-
 </script>
 
 <style lang="less" scoped>
