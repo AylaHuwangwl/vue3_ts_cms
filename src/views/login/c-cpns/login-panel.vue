@@ -56,7 +56,7 @@ function loginAction() {
     router.push('/main')
     // console.log(router.push('/main'))
   } else {
-    console.log('手机号登录')
+    // console.log('手机号登录')
   }
 }
 </script>

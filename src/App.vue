@@ -1,5 +1,5 @@
 <template>
-  <div class="app">``
+  <div class="app">
     <el-config-provider :locale="zhCn">
       <router-view></router-view>
     </el-config-provider>

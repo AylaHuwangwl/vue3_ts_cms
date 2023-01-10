@@ -53,6 +53,7 @@ function handleFoldValue(value) {
     }
     .main {
       background-color: #f0f2f5;
+      // padding: 10px;
     }
   }
 }

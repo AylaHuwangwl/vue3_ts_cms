@@ -1,12 +1,29 @@
 <template>
   <div class="user">
     <!-- <h2>user</h2> -->
-    <user-search />
+    <user-search @resetQuery="resetQuery" @search="search" />
+    <user-table ref="user_table" @adduserclick="adduserclick" />
+    <user-modal ref="usermodal"></user-modal>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from '@vue/reactivity'
 import userSearch from './c-cpns/user-search.vue'
+import userModal from './c-cpns/user-modal.vue'
+import userTable from './c-cpns/user-table.vue'
+const user_table = ref<InstanceType<typeof userTable>>()
+const usermodal = ref<InstanceType<typeof userModal>>()
+function resetQuery() {
+  user_table.value?.handleResetClick()
+}
+function search(value) {
+  user_table.value?.fetchData(value)
+}
+function adduserclick() {
+  // usermodal.value?.dialogVisible = true
+  console.log(usermodal.value?.dialogVisible)
+}
 </script>
 
 <style lang="less" scoped>

@@ -30,7 +30,7 @@ export function mapRouterToMenu(usermenu: any[]) {
 
         // console.log(router.currentRoute)
       }
-      console.log(router)
+      // console.log(router)
     })
     if (item.url) {
       item.url = item.children[0].url
