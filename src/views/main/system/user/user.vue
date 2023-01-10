@@ -21,8 +21,8 @@ function search(value) {
   user_table.value?.fetchData(value)
 }
 function adduserclick() {
-  // usermodal.value?.dialogVisible = true
-  console.log(usermodal.value?.dialogVisible)
+  usermodal.value?.setDiologshow()
+  // console.log(usermodal.value?.dialogVisible)
 }
 </script>
 
