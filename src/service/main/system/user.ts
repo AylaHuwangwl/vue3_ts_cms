@@ -28,3 +28,8 @@ export function getPageList(pagename: string, data: any) {
     data
   })
 }
+export function deletePageItem(pagename: string, id: number) {
+  return hyRequest.delete({
+    url: `/${pagename}/${id}`,
+  })
+}

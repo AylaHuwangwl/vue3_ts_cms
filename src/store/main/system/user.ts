@@ -4,7 +4,8 @@ import {
   deleteUser,
   addUser,
   editUser,
-  getPageList
+  getPageList,
+  deletePageItem
 } from '@/service/main/system/user'
 interface StateFormat {
   userlist: any[]
@@ -45,10 +46,15 @@ const userList = defineStore('userList', {
       })
     },
 
-    async getPageListData(pagename: string, data: any) {
+    async getPageListData(pagename: string, data: any = { offset: 0, size: 10 }) {
       await getPageList(pagename, data).then((res) => {
         this.pageList = res.data.list
         this.pagetTotalNum = res.data.totalCount
+      })
+    },
+    async deletePageItem(pagename: string, id: number) {
+      await deletePageItem(pagename, id).then(res => {
+        this.getPageListData(pagename)
       })
     }
   }
