@@ -2,7 +2,7 @@
   <div class="user">
     <!-- <h2>user</h2> -->
     <user-search @resetQuery="resetQuery" @search="search" />
-    <user-table ref="user_table" @adduserclick="adduserclick" />
+    <user-table ref="user_table" @adduserclick="adduserclick" @edituserclick="edituserclick" />
     <user-modal ref="usermodal"></user-modal>
   </div>
 </template>
@@ -21,8 +21,13 @@ function search(value) {
   user_table.value?.fetchData(value)
 }
 function adduserclick() {
-  usermodal.value?.setDiologshow()
+  usermodal.value?.setDiologshow(true)
+
   // console.log(usermodal.value?.dialogVisible)
+}
+function edituserclick(itemdata: any) {
+  // console.log(itemdata)
+  usermodal.value?.setDiologshow(false, itemdata)
 }
 </script>
 

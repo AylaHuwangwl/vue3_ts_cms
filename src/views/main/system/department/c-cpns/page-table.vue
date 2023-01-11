@@ -5,18 +5,13 @@
       <el-button type="primary" @click="adduseraction">新建用户</el-button>
     </div>
     <div class="usertablelist">
-      <el-table align="center" ref="multipleTableRef" :data="userlist" style="width: 100%">
+      <el-table align="center" ref="multipleTableRef" :data="pageList" style="width: 100%">
         <!-- @selection-change="handleSelectionChange" -->
         <el-table-column align="center" type="selection" width="55" />
         <el-table-column align="center" label="序号" type="index" width="60" />
-        <el-table-column align="center" property="name" label="用户名" width="120" />
-        <el-table-column align="center" property="realname" label="真实姓名" width="100" />
-        <el-table-column align="center" property="cellphone" label="手机号码" width="140" />
-        <el-table-column align="center" property="enable" label="状态" width="60">
-          <template #default="scope">
-            <el-button size="small" :type="scope.row.enable ? 'primary' : 'danger'" plain>{{ scope.row.enable ? '启用' : '禁用' }}</el-button>
-          </template>
-        </el-table-column>
+        <el-table-column align="center" property="name" label="部门名称" width="120" />
+        <el-table-column align="center" property="leader" label="部门领导" width="100" />
+        <el-table-column align="center" property="parentId" label="上级部门" width="140" />
         <el-table-column align="center" property="createAt" label="创建时间">
           <template #default="scope">
             {{ formatTime(scope.row.createAt) }}</template>
@@ -35,14 +30,14 @@
     </div>
     <!-- 分页器 -->
     <div class="pagination">
-      <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize" :page-sizes="[10, 20, 50]" layout="sizes, prev, pager, next, jumper,total" :total="totalNum" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+      <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize" :page-sizes="[10, 20, 50]" layout="sizes, prev, pager, next, jumper,total" :total="pagetTotalNum" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { EditPen, Delete } from '@element-plus/icons-vue'
-import userList from '@/store/main/user/user'
+import userList from '@/store/main/system/user'
 import { storeToRefs } from 'pinia'
 import { formatTime } from '@/utils/formattime'
 import { computed, ref } from 'vue'
@@ -60,7 +55,7 @@ function fetchData(queryInfo: any = {}) {
     size: pageSize.value,
     ...queryInfo
   }
-  geuserTableList.getUserList(pageData)
+  geuserTableList.getPageListData('department', pageData)
 }
 fetchData()
 function handleSizeChange() {
@@ -74,7 +69,7 @@ function handleResetClick() {
   pageSize.value = 10
   fetchData()
 }
-const { userlist, totalNum } = storeToRefs(geuserTableList)
+const { pageList, pagetTotalNum } = storeToRefs(geuserTableList)
 
 // 删除用户
 function deleteUser(id: any) {

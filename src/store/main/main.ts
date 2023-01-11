@@ -1,15 +1,23 @@
 import { defineStore } from 'pinia'
 import { getRole, getDepartment } from '@/service/main/main'
+interface Role_department {
+  roleList: any[]
+  departmentList: any[]
+}
 const getRoleAndDepartment = defineStore('getRoleAndDepartment', {
-  state: () => ({
+  state: (): Role_department => ({
     roleList: [],
     departmentList: []
   }),
   actions: {
     fetchRoleAndDepartment() {
-      this.roleList = getRole()
-      this.departmentList = getDepartment()
+      getRole().then((res) => {
+        this.roleList = res.data.list
+      })
+      getDepartment().then((res) => {
+        this.departmentList = res.data.list
+      })
     }
-  },
+  }
 })
 export default getRoleAndDepartment
