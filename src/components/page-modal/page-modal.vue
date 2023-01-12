@@ -1,25 +1,22 @@
 <template>
   <div class="usermodal">
-    <el-dialog v-model="dialogVisible" :title="isNewValue?'新建用户':'编辑用户'" width="30%" center>
+    <el-dialog v-model="dialogVisible" :title="isNewValue?props.modalConfig.headernew:props.modalConfig.headeredit" width="30%" center>
       <el-form label-position="right" label-width="80px" :rules="rule" ref="adduserform" :model="modalform">
-        <el-form-item label="部门名称" prop="name">
-          <el-input placeholder="请输入部门名称" v-model="modalform.name"></el-input>
-        </el-form-item>
-        <el-form-item label="上级部门">
-          <el-select v-model="modalform.parentId" style="width: 100%;" placeholder="请选择上级部门">
-            <el-option v-for="item in departmentList" :value="item.id" :key="item.id" :label="item.name">
-              {{ item.name }}
-            </el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="领导名称" prop="leader">
-          <el-input placeholder="请输入领导名称" v-model="modalform.leader"></el-input>
-        </el-form-item>
+        <template v-for="item in props.modalConfig.formItems">
+          <el-form-item :label="item.label" v-if="item.type=='input'">
+            <el-input :placeholder="item.placeholder" v-model="modalform[item.prop]"></el-input>
+          </el-form-item>
+          <el-form-item :label="item.label" v-else="item.type=='select'">
+            <el-select v-model="modalform[item.prop]" :placeholder="item.placeholder" style="width: 100%;">
+              <el-option v-for="ele in item.options" :value="ele.value" :label="ele.label"></el-option>
+            </el-select>
+          </el-form-item>
+        </template>
       </el-form>
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="dialogVisible = false">取消</el-button>
-          <el-button type="primary" @click="addusersubmit"> </el-button>
+          <el-button type="primary" @click="addusersubmit"> 确定 </el-button>
         </span>
       </template>
     </el-dialog>
@@ -32,13 +29,23 @@ import { reactive, ref } from '@vue/reactivity'
 import getRoleAndDepartment from '@/store/main/main'
 import userList from '@/store/main/system/user'
 import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
+interface Iprops {
+  modalConfig: {
+    headernew: string
+    headeredit: string
+    submitText: string
+    cancelText: string
+    pagename: string
+    formItems: any[]
+  }
+}
+const props = defineProps<Iprops>()
+
 const modalform = reactive({
   name: undefined,
   parentId: undefined,
   leader: undefined
 })
-
 const addUserAction = userList()
 const roleAndDepartment = getRoleAndDepartment()
 roleAndDepartment.fetchRoleAndDepartment()
@@ -63,6 +70,7 @@ const rule: FormRules = {
 const dialogVisible = ref(false)
 const isNewValue = ref(true)
 let editUseriD = ref(0)
+
 function setDiologshow(isNew: boolean = true, itemdata?: any) {
   dialogVisible.value = true
   if (!isNew) {
@@ -83,9 +91,13 @@ function addusersubmit() {
   adduserform.value?.validate((valid) => {
     if (valid) {
       if (isNewValue.value) {
-        addUserAction.addPageItem('department', modalform)
+        addUserAction.addPageItem(props.modalConfig.pagename, modalform)
       } else {
-        addUserAction.editPageItem('department', editUseriD.value, modalform)
+        addUserAction.editPageItem(
+          props.modalConfig.pagename,
+          editUseriD.value,
+          modalform
+        )
       }
       dialogVisible.value = false
     }
