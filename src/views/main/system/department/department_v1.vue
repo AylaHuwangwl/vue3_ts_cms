@@ -1,8 +1,7 @@
 <template>
   <div class="department">
     <!-- <h2>department</h2> -->
-    <!-- <page-search @resetQuery="resetQuery" @search="search"></page-search> -->
-    <page-search :searchConfig="searchConfig" @resetQuery="resetQuery" @search="search"></page-search>
+    <page-search @resetQuery="resetQuery" @search="search"></page-search>
     <page-table ref="pagetableref" @addDepartmentclick="addDepartmentclick" @edit-departmentclick="editDepartmentclick"></page-table>
     <page-modal ref="pagemodalref"></page-modal>
   </div>
@@ -10,14 +9,10 @@
 
 <script setup lang="ts" name="department">
 import { ref } from 'vue'
-// import pageSearch from '@/views/main/system/department/c-cpns/page-search.vue'
-import pageSearch from '@/components/page-search/page-search.vue'
+import pageSearch from '@/views/main/system/department/c-cpns/page-search.vue'
 import pageTable from '@/views/main/system/department/c-cpns/page-table.vue'
 import pageModal from '@/views/main/system/department/c-cpns/page-modal.vue'
 import userList from '@/store/main/system/user'
-
-// 导入配置文件
-import searchConfig from '@/views/main/system/department/config/search.config'
 const getDepartmentData = userList()
 const pagetableref = ref<InstanceType<typeof pageTable>>()
 const pagemodalref = ref<InstanceType<typeof pageModal>>()

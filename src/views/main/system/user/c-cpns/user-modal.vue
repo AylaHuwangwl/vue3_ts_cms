@@ -43,7 +43,7 @@
 import type { FormRules, ElForm } from 'element-plus'
 import { reactive, ref } from '@vue/reactivity'
 import getRoleAndDepartment from '@/store/main/main'
-import userList from '@/store/main/user/user'
+import userList from '@/store/main/system/user'
 import { storeToRefs } from 'pinia'
 const modalform = reactive({
   name: undefined,
@@ -92,7 +92,7 @@ function addusersubmit() {
       if (isNewValue.value) {
         addUserAction.addUser(modalform)
       } else {
-        addUserAction.editUser(editUseriD.value)
+        addUserAction.editUser(editUseriD.value, modalform)
       }
       dialogVisible.value = false
     }
