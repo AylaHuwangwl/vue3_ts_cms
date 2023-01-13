@@ -11,3 +11,9 @@ export function getDepartment(data: any = { offset: 0, size: 10 }) {
     data
   })
 }
+export function getMenu(data: any = { offset: 0, size: 10 }) {
+  return hyRequest.post({
+    url: '/menu/list',
+    data
+  })
+}

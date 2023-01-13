@@ -11,6 +11,12 @@
               <template v-if="item.type== 'date-picker'">
                 <el-date-picker v-model="searchform[item.prop]" type="daterange" range-separator="-" start-placeholder="开始时间" end-placeholder="结束时间" size="large" />
               </template>
+              <template v-if="item.type== 'select'&& item.options">
+                <!-- <el-date-picker v-model="searchform[item.prop]" type="daterange" range-separator="-" start-placeholder="开始时间" end-placeholder="结束时间" size="large" /> -->
+                <el-select v-model="searchform[item.prop]">
+                  <el-option v-for="ele in item.options" :label="ele.label" :value="ele.value">{{ ele.label }}}</el-option>
+                </el-select>
+              </template>
             </el-form-item>
           </el-col>
         </template>

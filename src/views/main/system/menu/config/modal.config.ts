@@ -1,9 +1,9 @@
 const modalConfig = {
-  headernew: '新建角色',
-  headeredit: '编辑角色',
+  headernew: '新建菜单',
+  headeredit: '编辑菜单',
   submitText: '确定',
   cancelText: '取消',
-  pagename: 'role',
+  pagename: 'menu',
   formItems: [
     {
       type: 'input',
@@ -16,10 +16,6 @@ const modalConfig = {
       prop: 'intro',
       label: '角色介绍',
       placeholder: '请输入角色介绍'
-    },
-    {
-      type: 'custom',
-      slotName: 'menulist'
     }
   ]
 }

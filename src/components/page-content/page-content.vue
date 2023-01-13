@@ -5,7 +5,7 @@
       <el-button type="primary" @click="adddepartmentaction">{{props.contentConfig.header.btntitle}}</el-button>
     </div>
     <div class="usertablelist">
-      <el-table align="center" ref="multipleTableRef" :data="pageList" style="width: 100%">
+      <el-table align="center" ref="multipleTableRef" :data="pageList" style="width: 100%" v-bind="contentConfig?.children">
         <!-- @selection-change="handleSelectionChange" -->
         <template v-for="item in props.contentConfig.tableConfig" :key="item.prop">
           <el-table-column v-if="item.type==='timer'" align="center" :label="item.label" :prop="item.prop">
@@ -20,7 +20,7 @@
           </el-table-column>
           <el-table-column v-else align="center" v-bind="item"></el-table-column>
         </template>
-        <el-table-column align="center" label="操作" width="180px">
+        <el-table-column align="center" label="操作" width="180px" fixed="right">
           <template #default="scope">
             <el-button link type="primary" :icon="EditPen" @click="editDepartment(scope.row)">编辑</el-button>
             <el-button link type="danger" :icon="Delete" @click="deleteDepartment(scope.row.id)">删除</el-button>
@@ -57,6 +57,7 @@ interface Iprops {
     }
     pagename: string
     tableConfig: any[]
+    children?: {}
   }
 }
 const props = defineProps<Iprops>()

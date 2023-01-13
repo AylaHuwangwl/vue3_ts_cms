@@ -4,9 +4,13 @@ import type { RouteLocationNormalizedLoaded } from 'vue-router'
 const route = useRoute()
 import router from '@/router'
 import user from '@/router/main/system/user/user'
+import menu from '@/router/main/system/menu/menu'
+import { formEmits } from 'element-plus'
 export let firstMenu: any = []
 export function mapRouterToMenu(usermenu: any[]) {
-  const file: Record<string, any> = import.meta.glob('@/router/main/**/*.ts', { eager: true })
+  const file: Record<string, any> = import.meta.glob('@/router/main/**/*.ts', {
+    eager: true
+  })
   // 所有路由包括无权限的路由
   const allRouter: RouteRecordRaw[] = []
   // 遍历file
@@ -18,10 +22,16 @@ export function mapRouterToMenu(usermenu: any[]) {
   // 拿到路由信息中包含菜单信息中的路由
   usermenu.forEach((item: any, index: number) => {
     item.children.forEach((ele: any) => {
-      const localRouter = allRouter.find((routeritem) => routeritem.path === ele.url)
+      const localRouter = allRouter.find(
+        (routeritem) => routeritem.path === ele.url
+      )
       if (localRouter) {
         if (!router.hasRoute(item.name)) {
-          router.addRoute('main', { path: item.url, redirect: item.children[0].url, name: item.name })
+          router.addRoute('main', {
+            path: item.url,
+            redirect: item.children[0].url,
+            name: item.name
+          })
         }
         router.addRoute('main', localRouter)
         if (!firstMenu.length) {
@@ -49,7 +59,11 @@ export function mapMenuToRouter(path: string, usermenu: any) {
     }
   }
 }
-export function mapPathToBreadCrumb(path: string, usermenu: any[], route: RouteLocationNormalizedLoaded) {
+export function mapPathToBreadCrumb(
+  path: string,
+  usermenu: any[],
+  route: RouteLocationNormalizedLoaded
+) {
   const breadRoute: any[] = []
   for (let menu of usermenu) {
     if (route.path.includes(menu.url) && menu.children.length) {
@@ -63,4 +77,18 @@ export function mapPathToBreadCrumb(path: string, usermenu: any[], route: RouteL
     }
   }
   return breadRoute
+}
+export function mapMenuToId(menus: any[]) {
+  const itemList: any[] = []
+  function _recurseGetId(menuList) {
+    for (const menu of menuList) {
+      if (menu.children) {
+        _recurseGetId(menu.children)
+      } else {
+        itemList.push(menu.id)
+      }
+    }
+  }
+  _recurseGetId(menus)
+  return itemList
 }

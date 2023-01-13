@@ -1,11 +1,16 @@
 <template>
   <div class="menu">
-    <h2>menu</h2>
+    <page-content :contentConfig="contentConfig">
+    </page-content>
   </div>
 </template>
 
-<script setup lang="ts" name="menu"></script>
-
+<script setup lang="ts" name="menu">
+import pageContent from '@/components/page-content/page-content.vue'
+import contentConfig from './config/content.config'
+// import usePageContent from '@/hooks/usepageContent';
+// const {pagetableref,resetQuery,search} = usePageContent()
+</script>
 <style scoped>
 .menu {
 }
