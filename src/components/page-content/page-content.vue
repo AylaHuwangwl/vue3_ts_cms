@@ -2,7 +2,7 @@
   <div class="table">
     <div class="tabletitle">
       <h2>{{contentConfig.header.title}}</h2>
-      <el-button type="primary" @click="adddepartmentaction">{{props.contentConfig.header.btntitle}}</el-button>
+      <el-button type="primary" @click="adddepartmentaction" v-if="isCreate">{{props.contentConfig.header.btntitle}}</el-button>
     </div>
     <div class="usertablelist">
       <el-table align="center" ref="multipleTableRef" :data="pageList" style="width: 100%" v-bind="contentConfig?.children">
@@ -22,8 +22,8 @@
         </template>
         <el-table-column align="center" label="操作" width="180px" fixed="right">
           <template #default="scope">
-            <el-button link type="primary" :icon="EditPen" @click="editDepartment(scope.row)">编辑</el-button>
-            <el-button link type="danger" :icon="Delete" @click="deleteDepartment(scope.row.id)">删除</el-button>
+            <el-button link type="primary" :icon="EditPen" @click="editDepartment(scope.row)" v-if="isUpdate">编辑</el-button>
+            <el-button link type="danger" :icon="Delete" @click="deleteDepartment(scope.row.id)" v-if="isDelete">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -41,6 +41,7 @@ import userList from '@/store/main/system/user'
 import { storeToRefs } from 'pinia'
 import { formatTime } from '@/utils/formattime'
 import { computed, ref } from 'vue'
+import  usePermission from '@/hooks/usePermission'
 // 获取接口数据
 const geuserTableList = userList()
 // geuserTableList.getUserList({ offset: 0, size: 10 })
@@ -61,7 +62,14 @@ interface Iprops {
   }
 }
 const props = defineProps<Iprops>()
+const isUpdate = usePermission(`${props.contentConfig.pagename}:update`)
+const isQuery = usePermission(`${props.contentConfig.pagename}:query`)
+const isDelete = usePermission(`${props.contentConfig.pagename}:delete`)
+const isCreate = usePermission(`${props.contentConfig.pagename}:create`)
 function fetchData(queryInfo: any = {}) {
+  // console.log(isQuery);
+
+  // if(!isQuery) return
   const pageData = {
     offset: (currentPage.value - 1) * pageSize.value,
     size: pageSize.value,

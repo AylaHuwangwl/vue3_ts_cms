@@ -5,11 +5,12 @@ import { localCache } from '@/utils/cache'
 import { LOGIN_TOKEN } from '@/global/constances'
 import router from '@/router'
 import type { RouteRecordRaw } from 'vue-router'
-import { mapRouterToMenu } from '@/utils/map-router'
+import { mapRouterToMenu,mapMenuToPermission } from '@/utils/map-router'
 interface Iuserinfostore {
   token: string
   userinfo: any
   usermenu: any
+  permission:string[]
 }
 const userLoginStore = defineStore('login', {
   // 定义store类型
@@ -17,7 +18,8 @@ const userLoginStore = defineStore('login', {
     // id: '',
     token: localCache.getCache(LOGIN_TOKEN) ?? '',
     userinfo: localCache.getCache('userinfo') ?? {},
-    usermenu: localCache.getCache('usermenu') ?? []
+    usermenu: localCache.getCache('usermenu') ?? [],
+    permission:[]
     // name: ''
   }),
   actions: {
@@ -38,6 +40,10 @@ const userLoginStore = defineStore('login', {
       this.usermenu = user_menu
       // 不定义Iuserinfostore接口直接写会报错
 
+      // 获取按钮权限信息
+      const permission = mapMenuToPermission(this.usermenu)
+      this.permission = permission
+      localCache.setCache('permission',this.permission)
       // 映射菜单信息和路由封装成一个函数
       // mapRouterToMenu(user_menu)
       // 存储用户信息

@@ -92,3 +92,18 @@ export function mapMenuToId(menus: any[]) {
   _recurseGetId(menus)
   return itemList
 }
+
+export function mapMenuToPermission(menus:any[]){
+  const permission:string[] = [];
+  function recurderGetPermission(menulist:any[]){
+    for(const item of menulist){
+      if(item.type === 3){
+        permission.push(item.permission)
+      }else{
+        recurderGetPermission(item.children ?? [])
+      }
+    }
+  }
+  recurderGetPermission(menus)
+  return permission;
+}
