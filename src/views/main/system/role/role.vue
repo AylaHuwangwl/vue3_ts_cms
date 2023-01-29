@@ -35,6 +35,12 @@ import type { ElTree } from 'element-plus'
 
 // 引用公共代码
 const treeRef = ref<InstanceType<typeof ElTree>>()
+  // 点击新建时重置
+function newcallback(){
+  nextTick(() => {
+    treeRef.value?.setCheckedKeys([])
+  })
+}
 function editcallback(item: any) {
   nextTick(() => {
     const menuList = mapMenuToId(item.menuList)
@@ -43,7 +49,7 @@ function editcallback(item: any) {
 }
 const { pagetableref, resetQuery, search } = usePageContent()
 const { pagemodalref, addDepartmentclick, editDepartmentclick } =
-  usePagemodal(editcallback)
+  usePagemodal(newcallback,editcallback)
 
 const getMenuList = getRoleAndDepartment()
 getMenuList.fetchRoleAndDepartment()

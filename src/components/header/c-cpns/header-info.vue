@@ -22,7 +22,7 @@
       <el-dropdown :hide-on-click="false">
         <span class="userinfo">
           <el-avatar :size="30" class="avatar" src="https://upload.jianshu.io/users/upload_avatars/1102036/c3628b478f06.jpeg" />
-          <span class="name">coderwhy</span>
+          <span class="name">{{userinfo.name}}</span>
         </span>
         <template #dropdown>
           <el-dropdown-menu>
@@ -53,10 +53,12 @@ import { LOGIN_TOKEN } from '@/global/constances'
 import { localCache } from '@/utils/cache'
 import { useRoute } from 'vue-router'
 import router from '@/router/index'
+import userLoginStore from '@/store/login/login'
 function logout() {
   localCache.removeCache(LOGIN_TOKEN)
   router.push('/login')
 }
+const {userinfo} = userLoginStore()
 </script>
 
 <style lang="less" scoped>

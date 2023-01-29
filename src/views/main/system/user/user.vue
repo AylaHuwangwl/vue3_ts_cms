@@ -12,8 +12,10 @@ import { ref } from '@vue/reactivity'
 import userSearch from './c-cpns/user-search.vue'
 import userModal from './c-cpns/user-modal.vue'
 import userTable from './c-cpns/user-table.vue'
+
 const user_table = ref<InstanceType<typeof userTable>>()
 const usermodal = ref<InstanceType<typeof userModal>>()
+
 function resetQuery() {
   user_table.value?.handleResetClick()
 }

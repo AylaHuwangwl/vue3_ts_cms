@@ -41,9 +41,26 @@ import userList from '@/store/main/system/user'
 import { storeToRefs } from 'pinia'
 import { formatTime } from '@/utils/formattime'
 import { computed, ref } from 'vue'
-import  usePermission from '@/hooks/usePermission'
+import usePermission from '@/hooks/usePermission'
 // 获取接口数据
 const geuserTableList = userList()
+geuserTableList.$onAction((arg) => {
+  arg.after(() => {
+    if (
+      arg.name === 'editPageItem' ||
+      arg.name === 'deletePageItem' ||
+      arg.name === 'addPageItem'
+    ) {
+      currentPage.value = 1
+      pageSize.value = 10
+    }
+  })
+
+  // }
+  // afters(() => {
+  //
+  // })
+})
 // geuserTableList.getUserList({ offset: 0, size: 10 })
 // // 第一次取不到值，因为getUserList是异步操作，用storeToRefs
 // const { userlist, totalNum } = storeToRefs(geuserTableList)
