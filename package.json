@@ -15,6 +15,7 @@
     "axios": "^1.2.2",
     "countup.js": "^2.4.2",
     "dayjs": "^1.11.7",
+    "echarts": "^5.4.1",
     "element-plus": "^2.2.27",
     "normalize.css": "^8.0.1",
     "pinia": "^2.0.28",
