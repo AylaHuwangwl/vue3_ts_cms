@@ -1,21 +1,33 @@
 <template>
   <div class="menu">
     <div class="title">
-      <img src="@/assets/img/logo.svg" alt="">
+      <img src="@/assets/img/logo.svg" alt="" />
       <span v-if="!isFold">Ayla小黄人</span>
     </div>
     <div class="menu_cms">
-      <el-menu :default-active="defaultActive" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" background-color="#001529" text-color="white" :collapse="isFold">
+      <el-menu
+        :default-active="defaultActive"
+        class="el-menu-vertical-demo"
+        @open="handleOpen"
+        @close="handleClose"
+        background-color="#001529"
+        text-color="white"
+        :collapse="isFold"
+      >
         <template v-for="item in u_menu">
-          <el-sub-menu :index="item.id +''">
+          <el-sub-menu :index="item.id + ''">
             <template #title>
               <el-icon>
                 <component :is="item.icon.split('-icon-')[1]" />
               </el-icon>
-              <span>{{item.name}}</span>
+              <span>{{ item.name }}</span>
             </template>
             <template v-for="ele in item.children">
-              <el-menu-item :index="ele.id+''" @click="handleItemClick(ele)">{{ele.name}}</el-menu-item>
+              <el-menu-item
+                :index="ele.id + ''"
+                @click="handleItemClick(ele)"
+                >{{ ele.name }}</el-menu-item
+              >
             </template>
           </el-sub-menu>
         </template>
@@ -27,7 +39,7 @@
 <script setup lang="ts">
 // import userLoginStore from '@/store/login/login'
 import { localCache } from '@/utils/cache'
-import { ref } from '@vue/reactivity'
+import { ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { firstMenu } from '@/utils/map-router'
 import { mapMenuToRouter } from '@/utils/map-router'

@@ -1,29 +1,69 @@
 <template>
   <div class="usermodal">
-    <el-dialog v-model="dialogVisible" :title="isNewValue?'新建用户':'编辑用户'" width="30%">
-      <el-form label-position="right" label-width="80px" :rules="rule" ref="adduserform" :model="modalform">
+    <el-dialog
+      v-model="dialogVisible"
+      :title="isNewValue ? '新建用户' : '编辑用户'"
+      width="30%"
+    >
+      <el-form
+        label-position="right"
+        label-width="80px"
+        :rules="rule"
+        ref="adduserform"
+        :model="modalform"
+      >
         <el-form-item label="用户名">
-          <el-input placeholder="请输入用户名" v-model="modalform.name"></el-input>
+          <el-input
+            placeholder="请输入用户名"
+            v-model="modalform.name"
+          ></el-input>
         </el-form-item>
         <el-form-item label="真实姓名" prop="realname">
-          <el-input placeholder="请输入真实姓名" v-model="modalform.realname"></el-input>
+          <el-input
+            placeholder="请输入真实姓名"
+            v-model="modalform.realname"
+          ></el-input>
         </el-form-item>
         <el-form-item label="用户密码" v-if="isNewValue">
-          <el-input placeholder="请输入用户密码" v-model="modalform.password" show-password></el-input>
+          <el-input
+            placeholder="请输入用户密码"
+            v-model="modalform.password"
+            show-password
+          ></el-input>
         </el-form-item>
         <el-form-item label="电话号码">
-          <el-input placeholder="请输入电话号码" v-model="modalform.cellphone"></el-input>
+          <el-input
+            placeholder="请输入电话号码"
+            v-model="modalform.cellphone"
+          ></el-input>
         </el-form-item>
         <el-form-item label="部门">
-          <el-select v-model="modalform.departmentId" style="width: 100%;" placeholder="请选择部门">
-            <el-option v-for="item in departmentList" :value="item.id" :key="item.id" :label="item.name">
+          <el-select
+            v-model="modalform.departmentId"
+            style="width: 100%"
+            placeholder="请选择部门"
+          >
+            <el-option
+              v-for="item in departmentList"
+              :value="item.id"
+              :key="item.id"
+              :label="item.name"
+            >
               {{ item.name }}
             </el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="角色">
-          <el-select v-model="modalform.roleId" style="width: 100%;" placeholder="请选择角色">
-            <el-option v-for="item in roleList" :value="item.id" :label="item.name">
+          <el-select
+            v-model="modalform.roleId"
+            style="width: 100%"
+            placeholder="请选择角色"
+          >
+            <el-option
+              v-for="item in roleList"
+              :value="item.id"
+              :label="item.name"
+            >
               {{ item.name }}
             </el-option>
           </el-select>
@@ -41,7 +81,7 @@
 
 <script setup lang="ts">
 import type { FormRules, ElForm } from 'element-plus'
-import { reactive, ref } from '@vue/reactivity'
+import { reactive, ref } from 'vue'
 import getRoleAndDepartment from '@/store/main/main'
 import userList from '@/store/main/system/user'
 import { storeToRefs } from 'pinia'

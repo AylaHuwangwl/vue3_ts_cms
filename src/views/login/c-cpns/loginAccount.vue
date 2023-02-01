@@ -1,11 +1,22 @@
 <template>
   <div class="account">
-    <el-form label-width="60px" size="large" :model="account" :rules="accountrules" status-icon ref="elformValidate">
+    <el-form
+      label-width="60px"
+      size="large"
+      :model="account"
+      :rules="accountrules"
+      status-icon
+      ref="elformValidate"
+    >
       <el-form-item label="帐号" prop="name">
         <el-input v-model="account.name" placeholder="请输入账号" />
       </el-form-item>
       <el-form-item label="密码" prop="password">
-        <el-input show-password v-model="account.password" placeholder="请输入密码" />
+        <el-input
+          show-password
+          v-model="account.password"
+          placeholder="请输入密码"
+        />
       </el-form-item>
     </el-form>
   </div>

@@ -3,7 +3,9 @@
     <!-- <h2>header-crumb</h2> -->
     <!-- icon组件会自动加载 -->
     <el-breadcrumb separator-icon="ArrowRight">
-      <el-breadcrumb-item v-for="item in breadcrumbs" :to="item.path">{{item.name}}</el-breadcrumb-item>
+      <el-breadcrumb-item v-for="item in breadcrumbs" :to="item.path">{{
+        item.name
+      }}</el-breadcrumb-item>
     </el-breadcrumb>
   </div>
 </template>

@@ -2,10 +2,21 @@
   <div class="department">
     <!-- <h2>department</h2> -->
     <!-- <page-search @resetQuery="resetQuery" @search="search"></page-search> -->
-    <page-search :searchConfig="searchConfig" @resetQuery="resetQuery" @search="search"></page-search>
-    <page-content :contentConfig="contentConfig" ref="pagetableref" @addDepartmentclick="addDepartmentclick" @edit-departmentclick="editDepartmentclick">
-      <template #createAt="scope"><span style="color: red;">自己加：{{scope.row.name}}</span></template>
-      <template #updateAt="scope">测试插槽：{{scope.row.name}}</template>
+    <page-search
+      :searchConfig="searchConfig"
+      @resetQuery="resetQuery"
+      @search="search"
+    ></page-search>
+    <page-content
+      :contentConfig="contentConfig"
+      ref="pagetableref"
+      @addDepartmentclick="addDepartmentclick"
+      @edit-departmentclick="editDepartmentclick"
+    >
+      <template #createAt="scope"
+        ><span style="color: red">自己加：{{ scope.row.name }}</span></template
+      >
+      <template #updateAt="scope">测试插槽：{{ scope.row.name }}</template>
     </page-content>
     <page-modal :modalConfig="modalconfigref" ref="pagemodalref"></page-modal>
   </div>

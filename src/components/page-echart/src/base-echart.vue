@@ -8,6 +8,8 @@
 import * as echarts from 'echarts'
 import { ref, onMounted } from 'vue'
 import type { EChartsOption } from 'echarts'
+import ChinaJSON from '../data/china.json'
+echarts.registerMap('china', ChinaJSON as any)
 const echartRef = ref<HTMLElement>()
 interface Iprops {
   option: EChartsOption
@@ -18,6 +20,9 @@ onMounted(() => {
     renderer: 'canvas'
   })
   echartInstance.setOption(props.option)
+  window.addEventListener('resize', () => {
+    echartInstance.resize()
+  })
 })
 </script>
 

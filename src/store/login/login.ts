@@ -1,16 +1,20 @@
 import { defineStore } from 'pinia'
-import { loginAccountRequest, getUserInfo, getUserMenu } from '@/service/login/login'
+import {
+  loginAccountRequest,
+  getUserInfo,
+  getUserMenu
+} from '@/service/login/login'
 import type { IAccount } from '../../types/login_types'
 import { localCache } from '@/utils/cache'
 import { LOGIN_TOKEN } from '@/global/constances'
 import router from '@/router'
 import type { RouteRecordRaw } from 'vue-router'
-import { mapRouterToMenu,mapMenuToPermission } from '@/utils/map-router'
+import { mapRouterToMenu, mapMenuToPermission } from '@/utils/map-router'
 interface Iuserinfostore {
   token: string
   userinfo: any
   usermenu: any
-  permission:string[]
+  permission: string[]
 }
 const userLoginStore = defineStore('login', {
   // 定义store类型
@@ -19,7 +23,7 @@ const userLoginStore = defineStore('login', {
     token: localCache.getCache(LOGIN_TOKEN) ?? '',
     userinfo: localCache.getCache('userinfo') ?? {},
     usermenu: localCache.getCache('usermenu') ?? [],
-    permission:[]
+    permission: []
     // name: ''
   }),
   actions: {
@@ -43,7 +47,7 @@ const userLoginStore = defineStore('login', {
       // 获取按钮权限信息
       const permission = mapMenuToPermission(this.usermenu)
       this.permission = permission
-      localCache.setCache('permission',this.permission)
+      localCache.setCache('permission', this.permission)
       // 映射菜单信息和路由封装成一个函数
       // mapRouterToMenu(user_menu)
       // 存储用户信息
@@ -52,14 +56,14 @@ const userLoginStore = defineStore('login', {
     },
     // 保存路由信息，刷新时路由信息仍保留
     saveRouterInfo() {
-      const token = localCache.getCache(LOGIN_TOKEN);
-      const userinfo = localCache.getCache('userinfo');
-      const usermenu = localCache.getCache('usermenu');
-      if(token && userinfo && usermenu){
-        this.token = token;
-        this.userinfo = userinfo;
-        this.usermenu = usermenu;
-        mapRouterToMenu(usermenu);
+      const token = localCache.getCache(LOGIN_TOKEN)
+      const userinfo = localCache.getCache('userinfo')
+      const usermenu = localCache.getCache('usermenu')
+      if (token && userinfo && usermenu) {
+        this.token = token
+        this.userinfo = userinfo
+        this.usermenu = usermenu
+        mapRouterToMenu(usermenu)
       }
     }
   }

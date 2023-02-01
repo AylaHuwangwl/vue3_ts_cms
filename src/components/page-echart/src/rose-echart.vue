@@ -7,8 +7,13 @@
 
 <script setup lang="ts">
 import baseEchart from './base-echart.vue'
-import {computed} from 'vue'
-import type { EChartsOption } from 'echarts';
+import { computed } from 'vue'
+import type { EChartsOption } from 'echarts'
+import type { IPieEchartData } from '../type'
+interface IProps {
+  roseData: IPieEchartData[]
+}
+const props = defineProps<IProps>()
 const option = computed<EChartsOption>(() => {
   return {
     toolbox: {
@@ -35,7 +40,7 @@ const option = computed<EChartsOption>(() => {
         itemStyle: {
           borderRadius: 8
         },
-        data: [{value:12,name:'212'}],
+        data: props.roseData,
         label: {
           show: false
         }

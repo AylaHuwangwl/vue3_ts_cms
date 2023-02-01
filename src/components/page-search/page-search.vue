@@ -1,30 +1,56 @@
 <template>
   <div class="user-search">
-    <el-form label-width="80px" size="large" :model="searchform" ref="search_form">
+    <el-form
+      label-width="80px"
+      size="large"
+      :model="searchform"
+      ref="search_form"
+    >
       <el-row :gutter="20">
         <template v-for="item in props.searchConfig.formItems" :key="item.prop">
           <el-col :span="8">
             <el-form-item :label="item.label">
-              <template v-if="item.type== 'input'">
-                <el-input :placeholder="item.placeholder" v-model="searchform[item.prop]"></el-input>
+              <template v-if="item.type == 'input'">
+                <el-input
+                  :placeholder="item.placeholder"
+                  v-model="searchform[item.prop]"
+                ></el-input>
               </template>
-              <template v-if="item.type== 'date-picker'">
-                <el-date-picker v-model="searchform[item.prop]" type="daterange" range-separator="-" start-placeholder="开始时间" end-placeholder="结束时间" size="large" />
+              <template v-if="item.type == 'date-picker'">
+                <el-date-picker
+                  v-model="searchform[item.prop]"
+                  type="daterange"
+                  range-separator="-"
+                  start-placeholder="开始时间"
+                  end-placeholder="结束时间"
+                  size="large"
+                />
               </template>
-              <template v-if="item.type== 'select'&& item.options">
+              <template v-if="item.type == 'select' && item.options">
                 <!-- <el-date-picker v-model="searchform[item.prop]" type="daterange" range-separator="-" start-placeholder="开始时间" end-placeholder="结束时间" size="large" /> -->
                 <el-select v-model="searchform[item.prop]">
-                  <el-option v-for="ele in item.options" :label="ele.label" :value="ele.value">{{ ele.label }}}</el-option>
+                  <el-option
+                    v-for="ele in item.options"
+                    :label="ele.label"
+                    :value="ele.value"
+                    >{{ ele.label }}}</el-option
+                  >
                 </el-select>
               </template>
             </el-form-item>
           </el-col>
         </template>
-
       </el-row>
       <div class="button">
-        <el-button size="default" :icon="Refresh" @click="clearSearchSelect(search_form)">重置</el-button>
-        <el-button type="primary" size="default" :icon="Search" @click="search">搜索</el-button>
+        <el-button
+          size="default"
+          :icon="Refresh"
+          @click="clearSearchSelect(search_form)"
+          >重置</el-button
+        >
+        <el-button type="primary" size="default" :icon="Search" @click="search"
+          >搜索</el-button
+        >
       </div>
     </el-form>
   </div>
@@ -32,7 +58,7 @@
 
 <script setup lang="ts">
 import { Search, Refresh } from '@element-plus/icons-vue'
-import { reactive, ref } from '@vue/reactivity'
+import { reactive, ref } from 'vue'
 import type { FormInstance, ElForm } from 'element-plus'
 const search_form = ref<InstanceType<typeof ElForm>>()
 

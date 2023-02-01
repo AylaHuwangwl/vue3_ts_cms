@@ -8,8 +8,13 @@
 <script setup lang="ts">
 import baseEchart from './base-echart.vue'
 import * as echarts from 'echarts'
-import {computed} from 'vue'
-import type { EChartsOption } from 'echarts';
+import { computed } from 'vue'
+import type { EChartsOption } from 'echarts'
+import type { IEchartValueData } from '../type'
+const props = defineProps<{
+  labels: string[]
+  values: IEchartValueData[]
+}>()
 const option = computed<EChartsOption>(() => {
   return {
     title: {
@@ -19,7 +24,7 @@ const option = computed<EChartsOption>(() => {
       bottom: '5%'
     },
     xAxis: {
-      data:['a','b','c'],
+      data: props.labels,
       axisLabel: {
         inside: true,
         color: '#fff'
@@ -59,7 +64,7 @@ const option = computed<EChartsOption>(() => {
             ])
           }
         },
-        data: [11,22,33]
+        data: props.values
       }
     ]
   }

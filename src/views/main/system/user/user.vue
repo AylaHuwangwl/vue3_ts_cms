@@ -2,13 +2,17 @@
   <div class="user">
     <!-- <h2>user</h2> -->
     <user-search @resetQuery="resetQuery" @search="search" />
-    <user-table ref="user_table" @adduserclick="adduserclick" @edituserclick="edituserclick" />
+    <user-table
+      ref="user_table"
+      @adduserclick="adduserclick"
+      @edituserclick="edituserclick"
+    />
     <user-modal ref="usermodal"></user-modal>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from '@vue/reactivity'
+import { ref } from 'vue'
 import userSearch from './c-cpns/user-search.vue'
 import userModal from './c-cpns/user-modal.vue'
 import userTable from './c-cpns/user-table.vue'

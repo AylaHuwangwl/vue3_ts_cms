@@ -9,14 +9,12 @@
           <el-input />
           <el-button type="primary" class="btn_code">获取验证码</el-button>
         </div>
-
       </el-form-item>
     </el-form>
   </div>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <style lang="less" scoped>
 .verity-code {

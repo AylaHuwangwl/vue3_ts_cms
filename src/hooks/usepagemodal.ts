@@ -2,11 +2,11 @@ import { ref } from 'vue'
 import type pageModal from '@/components/page-modal/page-modal.vue'
 type editCallBack = (item: any) => void
 type newCallBack = () => void
-function usePageModal(newcallback?:newCallBack,editcallback?: editCallBack) {
+function usePageModal(newcallback?: newCallBack, editcallback?: editCallBack) {
   const pagemodalref = ref<InstanceType<typeof pageModal>>()
   function addDepartmentclick() {
     pagemodalref.value?.setDiologshow(true)
-    if(newcallback){
+    if (newcallback) {
       newcallback()
     }
   }

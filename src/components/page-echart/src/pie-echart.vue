@@ -8,8 +8,13 @@
 <script setup lang="ts">
 import { defineProps, computed } from 'vue'
 import baseEchart from './base-echart.vue'
-import type {EChartsOption} from 'echarts'
-const option = computed<EChartsOption>(()=>{
+import type { EChartsOption } from 'echarts'
+import type { IPieEchartData } from '../type'
+interface IProps {
+  pieData: IPieEchartData[]
+}
+const props = defineProps<IProps>()
+const option = computed<EChartsOption>(() => {
   return {
     // 手指放上去的时候显示的文本
     tooltip: {
@@ -26,7 +31,7 @@ const option = computed<EChartsOption>(()=>{
         type: 'pie',
         radius: '50%',
         bottom: '-10%',
-        data: [{value:12,name:'12'}],
+        data: props.pieData,
         emphasis: {
           itemStyle: {
             shadowBlur: 10,
@@ -38,8 +43,6 @@ const option = computed<EChartsOption>(()=>{
     ]
   }
 })
-
-
 </script>
 
 <style lang="less" scoped>

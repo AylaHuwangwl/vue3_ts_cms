@@ -7,8 +7,13 @@
 
 <script setup lang="ts">
 import baseEchart from './base-echart.vue'
-import {computed} from 'vue'
-import type { EChartsOption } from 'echarts';
+import { computed } from 'vue'
+import type { EChartsOption } from 'echarts'
+import type { IEchartValueData } from '../type'
+const props = defineProps<{
+  labels: string[]
+  values: IEchartValueData[]
+}>()
 const option = computed<EChartsOption>(() => {
   return {
     tooltip: {
@@ -31,7 +36,7 @@ const option = computed<EChartsOption>(() => {
       {
         type: 'category',
         boundaryGap: false,
-        data: ['a','b','c']
+        data: props.labels
       }
     ],
     yAxis: [
@@ -48,7 +53,7 @@ const option = computed<EChartsOption>(() => {
         emphasis: {
           focus: 'series'
         },
-        data: [12,22,32]
+        data: props.values
       }
     ]
   }

@@ -2,7 +2,11 @@
   <div class="department">
     <!-- <h2>department</h2> -->
     <page-search @resetQuery="resetQuery" @search="search"></page-search>
-    <page-table ref="pagetableref" @addDepartmentclick="addDepartmentclick" @edit-departmentclick="editDepartmentclick"></page-table>
+    <page-table
+      ref="pagetableref"
+      @addDepartmentclick="addDepartmentclick"
+      @edit-departmentclick="editDepartmentclick"
+    ></page-table>
     <page-modal ref="pagemodalref"></page-modal>
   </div>
 </template>

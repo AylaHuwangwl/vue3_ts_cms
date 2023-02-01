@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import { CountUp } from 'countup.js'
-import { ref,onMounted } from 'vue';
+import { ref, onMounted } from 'vue'
 interface IProps {
   amount?: string
   title: string
@@ -32,13 +32,13 @@ interface IProps {
 const props = defineProps<IProps>()
 const count1Ref = ref<HTMLElement>()
 const count2Ref = ref<HTMLElement>()
-  const options = {
+const options = {
   decimalPlaces: 2,
   prefix: props.amount === 'saleroom' ? '¥' : ' '
 }
-onMounted(()=>{
-  const countup1 = new CountUp(count1Ref.value!,props.number1,options)
-  const countup2 = new CountUp(count2Ref.value!,props.number2,options)
+onMounted(() => {
+  const countup1 = new CountUp(count1Ref.value!, props.number1, options)
+  const countup2 = new CountUp(count2Ref.value!, props.number2, options)
   countup1.start()
   countup2.start()
 })

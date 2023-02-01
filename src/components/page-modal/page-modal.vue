@@ -1,18 +1,48 @@
 <template>
   <div class="usermodal">
-    <el-dialog v-model="dialogVisible" :title="isNewValue?props.modalConfig.headernew:props.modalConfig.headeredit" width="30%" center>
-      <el-form label-position="right" label-width="80px" ref="adduserform" :model="modalform">
+    <el-dialog
+      v-model="dialogVisible"
+      :title="
+        isNewValue ? props.modalConfig.headernew : props.modalConfig.headeredit
+      "
+      width="30%"
+      center
+    >
+      <el-form
+        label-position="right"
+        label-width="80px"
+        ref="adduserform"
+        :model="modalform"
+      >
         <template v-for="item in props.modalConfig.formItems">
-          <el-form-item :label="item.label" v-if="item.type=='input'">
-            <el-input :placeholder="item.placeholder" v-model="modalform[item.prop]"></el-input>
+          <el-form-item :label="item.label" v-if="item.type == 'input'">
+            <el-input
+              :placeholder="item.placeholder"
+              v-model="modalform[item.prop]"
+            ></el-input>
           </el-form-item>
-          <el-form-item :label="item.label" v-else-if="item.type=='select'">
-            <el-select v-model="modalform[item.prop]" :placeholder="item.placeholder" style="width: 100%;">
-              <el-option v-for="ele in item.options" :value="ele.value" :label="ele.label"></el-option>
+          <el-form-item :label="item.label" v-else-if="item.type == 'select'">
+            <el-select
+              v-model="modalform[item.prop]"
+              :placeholder="item.placeholder"
+              style="width: 100%"
+            >
+              <el-option
+                v-for="ele in item.options"
+                :value="ele.value"
+                :label="ele.label"
+              ></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item :label="item.label" v-else-if="item.type=='input-number'">
-            <el-input-number v-model="modalform[item.prop]" :placeholder="item.placeholder" style="width: 100%;">
+          <el-form-item
+            :label="item.label"
+            v-else-if="item.type == 'input-number'"
+          >
+            <el-input-number
+              v-model="modalform[item.prop]"
+              :placeholder="item.placeholder"
+              style="width: 100%"
+            >
             </el-input-number>
           </el-form-item>
           <template v-else-if="item.type == 'custom'">
@@ -32,7 +62,7 @@
 
 <script setup lang="ts">
 import type { FormRules, ElForm } from 'element-plus'
-import { reactive, ref } from '@vue/reactivity'
+import { reactive, ref } from 'vue'
 import getRoleAndDepartment from '@/store/main/main'
 import userList from '@/store/main/system/user'
 import { storeToRefs } from 'pinia'

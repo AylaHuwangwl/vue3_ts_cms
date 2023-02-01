@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from '@vue/reactivity'
+import { ref } from 'vue'
 import HeaderInfo from './c-cpns/header-info.vue'
 import HeaderCrumb from './c-cpns/haeder-crumb.vue'
 

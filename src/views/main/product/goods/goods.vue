@@ -1,24 +1,43 @@
 <template>
   <div class="goods">
     <!-- <h2>信息</h2> -->
-    <page-search :search-config="searchConfig" @reset-query="resetQuery" @search="search"></page-search>
-    <page-content :content-config="contentConfig" ref="pagetableref" @add-departmentclick="addDepartmentclick" @edit-departmentclick="editDepartmentclick">
+    <page-search
+      :search-config="searchConfig"
+      @reset-query="resetQuery"
+      @search="search"
+    ></page-search>
+    <page-content
+      :content-config="contentConfig"
+      ref="pagetableref"
+      @add-departmentclick="addDepartmentclick"
+      @edit-departmentclick="editDepartmentclick"
+    >
       <template #goodsname="scope">
-        <el-tooltip class="box-item" effect="dark" :content='scope.row.name' placement="top-start">
+        <el-tooltip
+          class="box-item"
+          effect="dark"
+          :content="scope.row.name"
+          placement="top-start"
+        >
           <span class="goodsnamestyle">{{ scope.row.name }}</span>
         </el-tooltip>
       </template>
       <template #status="scope">
-        <el-button size="small" :type="scope.row.status ? 'primary' : 'danger'" plain>{{ scope.row.status ? '启用' : '禁用' }}</el-button>
+        <el-button
+          size="small"
+          :type="scope.row.status ? 'primary' : 'danger'"
+          plain
+          >{{ scope.row.status ? '启用' : '禁用' }}</el-button
+        >
       </template>
       <template #imgurl="scope">
-        <img :src="scope.row.imgUrl" class="imgurl">
+        <img :src="scope.row.imgUrl" class="imgurl" />
       </template>
     </page-content>
     <page-modal :modal-config="modalConfig" ref="pagemodalref">
       <template #imgUrl>
         <el-form-item label="商品图片">
-          <el-upload class="avatar-uploader" action='' :show-file-list="false">
+          <el-upload class="avatar-uploader" action="" :show-file-list="false">
             <img v-if="imageUrl" :src="imageUrl" class="avatar" />
             <el-icon v-else class="avatar-uploader-icon">
               <Plus />
@@ -39,8 +58,8 @@ import modalConfig from './config/modal.config'
 import searchConfig from './config/search.config'
 import usePageContent from '@/hooks/usepageContent'
 import usePageModal from '@/hooks/usepagemodal'
-import { ref } from '@vue/reactivity'
-import { nextTick } from '@vue/runtime-core'
+import { ref } from 'vue'
+import { nextTick } from 'vue'
 const { pagetableref, resetQuery, search } = usePageContent()
 const { pagemodalref, addDepartmentclick, editDepartmentclick } = usePageModal()
 //

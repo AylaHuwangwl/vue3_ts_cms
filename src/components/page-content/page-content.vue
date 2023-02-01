@@ -1,36 +1,83 @@
 <template>
   <div class="table">
     <div class="tabletitle">
-      <h2>{{contentConfig.header.title}}</h2>
-      <el-button type="primary" @click="adddepartmentaction" v-if="isCreate">{{props.contentConfig.header.btntitle}}</el-button>
+      <h2>{{ contentConfig.header.title }}</h2>
+      <el-button type="primary" @click="adddepartmentaction" v-if="isCreate">{{
+        props.contentConfig.header.btntitle
+      }}</el-button>
     </div>
     <div class="usertablelist">
-      <el-table align="center" ref="multipleTableRef" :data="pageList" style="width: 100%" v-bind="contentConfig?.children">
+      <el-table
+        align="center"
+        ref="multipleTableRef"
+        :data="pageList"
+        style="width: 100%"
+        v-bind="contentConfig?.children"
+      >
         <!-- @selection-change="handleSelectionChange" -->
-        <template v-for="item in props.contentConfig.tableConfig" :key="item.prop">
-          <el-table-column v-if="item.type==='timer'" align="center" :label="item.label" :prop="item.prop">
+        <template
+          v-for="item in props.contentConfig.tableConfig"
+          :key="item.prop"
+        >
+          <el-table-column
+            v-if="item.type === 'timer'"
+            align="center"
+            :label="item.label"
+            :prop="item.prop"
+          >
             <template #default="scope">
               {{ formatTime(scope.row[item.prop]) }}
             </template>
           </el-table-column>
-          <el-table-column v-else-if="item.type==='custom'" v-bind="item">
+          <el-table-column v-else-if="item.type === 'custom'" v-bind="item">
             <template #default="scope">
               <slot :name="item.slotName" v-bind="scope"></slot>
             </template>
           </el-table-column>
-          <el-table-column v-else align="center" v-bind="item"></el-table-column>
+          <el-table-column
+            v-else
+            align="center"
+            v-bind="item"
+          ></el-table-column>
         </template>
-        <el-table-column align="center" label="操作" width="180px" fixed="right">
+        <el-table-column
+          align="center"
+          label="操作"
+          width="180px"
+          fixed="right"
+        >
           <template #default="scope">
-            <el-button link type="primary" :icon="EditPen" @click="editDepartment(scope.row)" v-if="isUpdate">编辑</el-button>
-            <el-button link type="danger" :icon="Delete" @click="deleteDepartment(scope.row.id)" v-if="isDelete">删除</el-button>
+            <el-button
+              link
+              type="primary"
+              :icon="EditPen"
+              @click="editDepartment(scope.row)"
+              v-if="isUpdate"
+              >编辑</el-button
+            >
+            <el-button
+              link
+              type="danger"
+              :icon="Delete"
+              @click="deleteDepartment(scope.row.id)"
+              v-if="isDelete"
+              >删除</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
     </div>
     <!-- 分页器 -->
     <div class="pagination">
-      <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize" :page-sizes="[10, 20, 50]" layout="sizes, prev, pager, next, jumper,total" :total="pagetTotalNum" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+      <el-pagination
+        v-model:current-page="currentPage"
+        v-model:page-size="pageSize"
+        :page-sizes="[10, 20, 50]"
+        layout="sizes, prev, pager, next, jumper,total"
+        :total="pagetTotalNum"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+      />
     </div>
   </div>
 </template>

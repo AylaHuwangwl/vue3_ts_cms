@@ -1,8 +1,8 @@
 <template>
   <div class="login">
     <el-container class="main-content">
-      <el-aside :width="isFold?'60px':'210px'" class="main-menu">
-        <nav-menu :isFold='isFold'></nav-menu>
+      <el-aside :width="isFold ? '60px' : '210px'" class="main-menu">
+        <nav-menu :isFold="isFold"></nav-menu>
       </el-aside>
       <el-container>
         <el-header class="main-header">
@@ -20,7 +20,7 @@
 import userLoginStore from '@/store/login/login'
 import NavMenu from '@/components/menu/menu.vue'
 import NavHeader from '@/components/header/header.vue'
-import { ref } from '@vue/reactivity'
+import { ref } from 'vue'
 const isFold = ref(false)
 function handleFoldValue(value) {
   isFold.value = value

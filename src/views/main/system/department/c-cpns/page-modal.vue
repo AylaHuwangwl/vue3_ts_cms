@@ -1,19 +1,45 @@
 <template>
   <div class="usermodal">
-    <el-dialog v-model="dialogVisible" :title="isNewValue?'新建用户':'编辑用户'" width="30%" center>
-      <el-form label-position="right" label-width="80px" :rules="rule" ref="adduserform" :model="modalform">
+    <el-dialog
+      v-model="dialogVisible"
+      :title="isNewValue ? '新建用户' : '编辑用户'"
+      width="30%"
+      center
+    >
+      <el-form
+        label-position="right"
+        label-width="80px"
+        :rules="rule"
+        ref="adduserform"
+        :model="modalform"
+      >
         <el-form-item label="部门名称" prop="name">
-          <el-input placeholder="请输入部门名称" v-model="modalform.name"></el-input>
+          <el-input
+            placeholder="请输入部门名称"
+            v-model="modalform.name"
+          ></el-input>
         </el-form-item>
         <el-form-item label="上级部门">
-          <el-select v-model="modalform.parentId" style="width: 100%;" placeholder="请选择上级部门">
-            <el-option v-for="item in departmentList" :value="item.id" :key="item.id" :label="item.name">
+          <el-select
+            v-model="modalform.parentId"
+            style="width: 100%"
+            placeholder="请选择上级部门"
+          >
+            <el-option
+              v-for="item in departmentList"
+              :value="item.id"
+              :key="item.id"
+              :label="item.name"
+            >
               {{ item.name }}
             </el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="领导名称" prop="leader">
-          <el-input placeholder="请输入领导名称" v-model="modalform.leader"></el-input>
+          <el-input
+            placeholder="请输入领导名称"
+            v-model="modalform.leader"
+          ></el-input>
         </el-form-item>
       </el-form>
       <template #footer>
@@ -28,7 +54,7 @@
 
 <script setup lang="ts">
 import type { FormRules, ElForm } from 'element-plus'
-import { reactive, ref } from '@vue/reactivity'
+import { reactive, ref } from 'vue'
 import getRoleAndDepartment from '@/store/main/main'
 import userList from '@/store/main/system/user'
 import { storeToRefs } from 'pinia'

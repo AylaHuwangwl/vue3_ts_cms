@@ -1,11 +1,28 @@
 <template>
   <div class="role">
     <pageSearch :search-config="searchConfig"></pageSearch>
-    <pageContent :content-config="contentConfig" ref="pagetableref" @add-departmentclick="addDepartmentclick" @edit-departmentclick="editDepartmentclick"></pageContent>
-    <pageModal :modal-config="modalConfig" ref="pagemodalref" :menuList="menuList1">
+    <pageContent
+      :content-config="contentConfig"
+      ref="pagetableref"
+      @add-departmentclick="addDepartmentclick"
+      @edit-departmentclick="editDepartmentclick"
+    ></pageContent>
+    <pageModal
+      :modal-config="modalConfig"
+      ref="pagemodalref"
+      :menuList="menuList1"
+    >
       <template #menulist>
         <!-- <span>我是具名插槽</span> -->
-        <el-tree ref="treeRef" :data="menuallList" show-checkbox node-key="id" highlight-current :props="{children: 'children',label: 'name'}" @check="checkoutmenu" />
+        <el-tree
+          ref="treeRef"
+          :data="menuallList"
+          show-checkbox
+          node-key="id"
+          highlight-current
+          :props="{ children: 'children', label: 'name' }"
+          @check="checkoutmenu"
+        />
       </template>
     </pageModal>
   </div>
@@ -35,8 +52,8 @@ import type { ElTree } from 'element-plus'
 
 // 引用公共代码
 const treeRef = ref<InstanceType<typeof ElTree>>()
-  // 点击新建时重置
-function newcallback(){
+// 点击新建时重置
+function newcallback() {
   nextTick(() => {
     treeRef.value?.setCheckedKeys([])
   })
@@ -48,8 +65,10 @@ function editcallback(item: any) {
   })
 }
 const { pagetableref, resetQuery, search } = usePageContent()
-const { pagemodalref, addDepartmentclick, editDepartmentclick } =
-  usePagemodal(newcallback,editcallback)
+const { pagemodalref, addDepartmentclick, editDepartmentclick } = usePagemodal(
+  newcallback,
+  editcallback
+)
 
 const getMenuList = getRoleAndDepartment()
 getMenuList.fetchRoleAndDepartment()

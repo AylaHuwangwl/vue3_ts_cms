@@ -1,7 +1,16 @@
 <template>
   <div class="category">
-    <pageSearch :search-config="searchConfig" @reset-query="resetQuery" @search="search"></pageSearch>
-    <pageContent :content-config="contentConfig" ref="pagetableref" @add-departmentclick="addDepartmentclick" @edit-departmentclick="editDepartmentclick"></pageContent>
+    <pageSearch
+      :search-config="searchConfig"
+      @reset-query="resetQuery"
+      @search="search"
+    ></pageSearch>
+    <pageContent
+      :content-config="contentConfig"
+      ref="pagetableref"
+      @add-departmentclick="addDepartmentclick"
+      @edit-departmentclick="editDepartmentclick"
+    ></pageContent>
     <pageModal :modal-config="modalConfig" ref="pagemodalref"></pageModal>
   </div>
 </template>

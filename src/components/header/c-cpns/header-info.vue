@@ -2,7 +2,8 @@
   <div class="header-info">
     <div class="operation">
       <span>
-        <el-icon size="18px">·
+        <el-icon size="18px"
+          >·
           <Bell />
         </el-icon>
       </span>
@@ -21,25 +22,23 @@
     <div class="info">
       <el-dropdown :hide-on-click="false">
         <span class="userinfo">
-          <el-avatar :size="30" class="avatar" src="https://upload.jianshu.io/users/upload_avatars/1102036/c3628b478f06.jpeg" />
-          <span class="name">{{userinfo.name}}</span>
+          <el-avatar
+            :size="30"
+            class="avatar"
+            src="https://upload.jianshu.io/users/upload_avatars/1102036/c3628b478f06.jpeg"
+          />
+          <span class="name">{{ userinfo.name }}</span>
         </span>
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item @click="logout">
-              <el-icon>
-                <Stamp />
-              </el-icon>退出系统
+              <el-icon> <Stamp /> </el-icon>退出系统
             </el-dropdown-item>
             <el-dropdown-item>
-              <el-icon>
-                <Avatar />
-              </el-icon>个人信息
+              <el-icon> <Avatar /> </el-icon>个人信息
             </el-dropdown-item>
             <el-dropdown-item>
-              <el-icon>
-                <EditPen />
-              </el-icon>修改密码
+              <el-icon> <EditPen /> </el-icon>修改密码
             </el-dropdown-item>
           </el-dropdown-menu>
         </template>
@@ -58,7 +57,7 @@ function logout() {
   localCache.removeCache(LOGIN_TOKEN)
   router.push('/login')
 }
-const {userinfo} = userLoginStore()
+const { userinfo } = userLoginStore()
 </script>
 
 <style lang="less" scoped>

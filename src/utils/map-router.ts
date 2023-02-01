@@ -6,7 +6,7 @@ import router from '@/router'
 import user from '@/router/main/system/user/user'
 import menu from '@/router/main/system/menu/menu'
 import { formEmits } from 'element-plus'
-export let firstMenu: any = []
+export const firstMenu: any = []
 export function mapRouterToMenu(usermenu: any[]) {
   const file: Record<string, any> = import.meta.glob('@/router/main/**/*.ts', {
     eager: true
@@ -14,7 +14,7 @@ export function mapRouterToMenu(usermenu: any[]) {
   // 所有路由包括无权限的路由
   const allRouter: RouteRecordRaw[] = []
   // 遍历file
-  for (let item in file) {
+  for (const item in file) {
     const route = file[item].default
     allRouter.push(route)
   }
@@ -51,8 +51,8 @@ export function mapRouterToMenu(usermenu: any[]) {
  *
  */
 export function mapMenuToRouter(path: string, usermenu: any) {
-  for (let item of usermenu) {
-    for (let ele of item.children) {
+  for (const item of usermenu) {
+    for (const ele of item.children) {
       if (ele.url === path) {
         return ele
       }
@@ -65,11 +65,11 @@ export function mapPathToBreadCrumb(
   route: RouteLocationNormalizedLoaded
 ) {
   const breadRoute: any[] = []
-  for (let menu of usermenu) {
+  for (const menu of usermenu) {
     if (route.path.includes(menu.url) && menu.children.length) {
       menu.url = menu.children[0].url
     }
-    for (let children of menu.children) {
+    for (const children of menu.children) {
       if (path === children.url) {
         breadRoute.push({ name: menu.name, path: menu.url })
         breadRoute.push({ name: children.name, path: children.url })
@@ -93,17 +93,17 @@ export function mapMenuToId(menus: any[]) {
   return itemList
 }
 
-export function mapMenuToPermission(menus:any[]){
-  const permission:string[] = [];
-  function recurderGetPermission(menulist:any[]){
-    for(const item of menulist){
-      if(item.type === 3){
+export function mapMenuToPermission(menus: any[]) {
+  const permission: string[] = []
+  function recurderGetPermission(menulist: any[]) {
+    for (const item of menulist) {
+      if (item.type === 3) {
         permission.push(item.permission)
-      }else{
+      } else {
         recurderGetPermission(item.children ?? [])
       }
     }
   }
   recurderGetPermission(menus)
-  return permission;
+  return permission
 }
