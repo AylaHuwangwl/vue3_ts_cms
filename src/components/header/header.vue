@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="custom-header">
     <!-- <h2>header</h2> -->
     <div class="menu-icon" @click="handleFoldClick">
       <el-icon size="28px">
@@ -29,7 +29,7 @@ function handleFoldClick() {
 </script>
 
 <style lang="less" scoped>
-.header {
+.custom-header {
   display: flex;
   align-items: center;
   flex: 1;
