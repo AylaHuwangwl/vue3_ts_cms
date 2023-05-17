@@ -17,7 +17,7 @@ import pageSearch from '@/views/main/system/department/c-cpns/page-search.vue'
 import pageTable from '@/views/main/system/department/c-cpns/page-table.vue'
 import pageModal from '@/views/main/system/department/c-cpns/page-modal.vue'
 import userList from '@/store/main/system/user'
-const getDepartmentData = userList()
+// const getDepartmentData = userList()
 const pagetableref = ref<InstanceType<typeof pageTable>>()
 const pagemodalref = ref<InstanceType<typeof pageModal>>()
 function resetQuery() {

@@ -1,5 +1,5 @@
 <template>
-  <div class="user">
+  <div class="custom-user">
     <!-- <h2>user</h2> -->
     <user-search @resetQuery="resetQuery" @search="search" />
     <user-table
@@ -38,6 +38,6 @@ function edituserclick(itemdata: any) {
 </script>
 
 <style lang="less" scoped>
-.user {
+.custom-user {
 }
 </style>

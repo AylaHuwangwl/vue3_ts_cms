@@ -1,5 +1,5 @@
 <template>
-  <div class="menu">
+  <div class="custom-menu">
     <div class="title">
       <img src="@/assets/img/logo.svg" alt="" />
       <span v-if="!isFold">Ayla小黄人</span>
@@ -14,7 +14,7 @@
         text-color="white"
         :collapse="isFold"
       >
-        <template v-for="item in u_menu">
+        <template v-for="item in u_menu" :key="item.id">
           <el-sub-menu :index="item.id + ''">
             <template #title>
               <el-icon>
@@ -22,7 +22,7 @@
               </el-icon>
               <span>{{ item.name }}</span>
             </template>
-            <template v-for="ele in item.children">
+            <template v-for="ele in item.children" :key="ele.id">
               <el-menu-item
                 :index="ele.id + ''"
                 @click="handleItemClick(ele)"
@@ -39,7 +39,6 @@
 <script setup lang="ts">
 // import userLoginStore from '@/store/login/login'
 import { localCache } from '@/utils/cache'
-import { ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { firstMenu } from '@/utils/map-router'
 import { mapMenuToRouter } from '@/utils/map-router'
@@ -72,7 +71,7 @@ function handleItemClick(ele: any) {
 </script>
 
 <style lang="less" scoped>
-.menu {
+.custom-menu {
   .title {
     display: flex;
     margin: 10px 0;

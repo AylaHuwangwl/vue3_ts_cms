@@ -87,7 +87,7 @@ import { EditPen, Delete } from '@element-plus/icons-vue'
 import userList from '@/store/main/system/user'
 import { storeToRefs } from 'pinia'
 import { formatTime } from '@/utils/formattime'
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import usePermission from '@/hooks/usePermission'
 // 获取接口数据
 const geuserTableList = userList()
@@ -127,7 +127,7 @@ interface Iprops {
 }
 const props = defineProps<Iprops>()
 const isUpdate = usePermission(`${props.contentConfig.pagename}:update`)
-const isQuery = usePermission(`${props.contentConfig.pagename}:query`)
+// const isQuery = usePermission(`${props.contentConfig.pagename}:query`)
 const isDelete = usePermission(`${props.contentConfig.pagename}:delete`)
 const isCreate = usePermission(`${props.contentConfig.pagename}:create`)
 function fetchData(queryInfo: any = {}) {

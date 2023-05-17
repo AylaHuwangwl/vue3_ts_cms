@@ -1,5 +1,5 @@
 <template>
-  <div class="role">
+  <div class="custom-role">
     <pageSearch :search-config="searchConfig"></pageSearch>
     <pageContent
       :content-config="contentConfig"
@@ -64,7 +64,7 @@ function editcallback(item: any) {
     treeRef.value?.setCheckedKeys(menuList)
   })
 }
-const { pagetableref, resetQuery, search } = usePageContent()
+const { pagetableref } = usePageContent()
 const { pagemodalref, addDepartmentclick, editDepartmentclick } = usePagemodal(
   newcallback,
   editcallback
@@ -82,6 +82,6 @@ function checkoutmenu(value1: any, value2: any) {
 </script>
 
 <style lang="less" scoped>
-.role {
-}
+// .custom-role {
+// }
 </style>

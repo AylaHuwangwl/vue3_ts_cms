@@ -84,7 +84,7 @@ import { EditPen, Delete } from '@element-plus/icons-vue'
 import userList from '@/store/main/system/user'
 import { storeToRefs } from 'pinia'
 import { formatTime } from '@/utils/formattime'
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 // 获取接口数据
 const geuserTableList = userList()
 // geuserTableList.getUserList({ offset: 0, size: 10 })

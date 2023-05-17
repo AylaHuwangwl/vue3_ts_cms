@@ -8,7 +8,7 @@
         <el-header class="main-header">
           <nav-header @fold-value="handleFoldValue"></nav-header>
         </el-header>
-        <el-main class="main">
+        <el-main class="custom-main">
           <router-view />
         </el-main>
       </el-container>
@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import userLoginStore from '@/store/login/login'
+// import userLoginStore from '@/store/login/login'
 import NavMenu from '@/components/menu/menu.vue'
 import NavHeader from '@/components/header/header.vue'
 import { ref } from 'vue'
@@ -51,7 +51,7 @@ function handleFoldValue(value) {
       --el-header-padding: 0 !important;
       background-color: aqua;
     }
-    .main {
+    .custom-main {
       background-color: #f0f2f5;
       // padding: 10px;
     }

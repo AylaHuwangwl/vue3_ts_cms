@@ -14,7 +14,7 @@
         ref="adduserform"
         :model="modalform"
       >
-        <template v-for="item in props.modalConfig.formItems">
+        <template v-for="item in props.modalConfig.formItems" :key="item.label">
           <el-form-item :label="item.label" v-if="item.type == 'input'">
             <el-input
               :placeholder="item.placeholder"
@@ -29,6 +29,7 @@
             >
               <el-option
                 v-for="ele in item.options"
+                :key="ele.value"
                 :value="ele.value"
                 :label="ele.label"
               ></el-option>
@@ -61,7 +62,7 @@
 </template>
 
 <script setup lang="ts">
-import type { FormRules, ElForm } from 'element-plus'
+import type { ElForm } from 'element-plus'
 import { reactive, ref } from 'vue'
 import getRoleAndDepartment from '@/store/main/main'
 import userList from '@/store/main/system/user'
@@ -82,7 +83,7 @@ const props = defineProps<Iprops>()
 const addUserAction = userList()
 const roleAndDepartment = getRoleAndDepartment()
 roleAndDepartment.fetchRoleAndDepartment()
-const { roleList, departmentList } = storeToRefs(roleAndDepartment)
+// const { roleList, departmentList } = storeToRefs(roleAndDepartment)
 
 // const rule: FormRules = {
 //   name: [

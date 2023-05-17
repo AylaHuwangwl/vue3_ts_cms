@@ -25,31 +25,31 @@ const router = createRouter({
     }
   ]
 })
-const localroute = [
-  {
-    path: '/main/analysis/dashboard',
-    component: () => import('../views/main/analysis/dashboard/dashboard.vue')
-  },
-  {
-    path: '/main/analysis/overview',
-    component: () => import('../views/main/analysis/overview/overview.vue')
-  },
-  {
-    path: '/main/system/role',
-    component: () => import('../views/main/system/role/role.vue')
-  },
-  {
-    path: '/main/system/user',
-    component: () => import('../views/main/system/user/user.vue')
-  }
-]
+// const localroute = [
+//   {
+//     path: '/main/analysis/dashboard',
+//     component: () => import('../views/main/analysis/dashboard/dashboard.vue')
+//   },
+//   {
+//     path: '/main/analysis/overview',
+//     component: () => import('../views/main/analysis/overview/overview.vue')
+//   },
+//   {
+//     path: '/main/system/role',
+//     component: () => import('../views/main/system/role/role.vue')
+//   },
+//   {
+//     path: '/main/system/user',
+//     component: () => import('../views/main/system/user/user.vue')
+//   }
+// ]
 // router.addRoute('main', localroute[0])
 // router.addRoute('main', localroute[1])
 // 导航首位，当跳转到main页面没有登陆时要先跳转到登陆页面
-router.beforeEach((to, from) => {
+router.beforeEach((to) => {
   const token = localCache.getCache(LOGIN_TOKEN)
-  const user_menu = localCache.getCache('usermenu')
-  const user_info = localCache.getCache('userinfo')
+  // const user_menu = localCache.getCache('usermenu')
+  // const user_info = localCache.getCache('userinfo')
   if (to.path.startsWith('/main') && !token) {
     to.path = '/login'
     // return '/login'

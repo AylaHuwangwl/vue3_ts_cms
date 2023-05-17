@@ -1,5 +1,5 @@
 <template>
-  <div class="category">
+  <div class="custom-category">
     <pageSearch
       :search-config="searchConfig"
       @reset-query="resetQuery"
@@ -15,7 +15,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="category">
+<script setup lang="ts" name="custom-category">
 import pageContent from '@/components/page-content/page-content.vue'
 import contentConfig from './config/content.config'
 import pageModal from '@/components/page-modal/page-modal.vue'
@@ -28,6 +28,6 @@ const { pagetableref, resetQuery, search } = usePageContent()
 const { pagemodalref, addDepartmentclick, editDepartmentclick } = usePageModal()
 </script>
 <style scoped>
-.category {
+.custom-category {
 }
 </style>

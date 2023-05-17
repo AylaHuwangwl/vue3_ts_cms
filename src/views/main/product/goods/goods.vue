@@ -1,5 +1,5 @@
 <template>
-  <div class="goods">
+  <div class="custom-goods">
     <!-- <h2>信息</h2> -->
     <page-search
       :search-config="searchConfig"
@@ -49,7 +49,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="goods">
+<script setup lang="ts" name="custom-goods">
 import pageContent from '@/components/page-content/page-content.vue'
 import pageModal from '@/components/page-modal/page-modal.vue'
 import pageSearch from '@/components/page-search/page-search.vue'
@@ -59,7 +59,7 @@ import searchConfig from './config/search.config'
 import usePageContent from '@/hooks/usepageContent'
 import usePageModal from '@/hooks/usepagemodal'
 import { ref } from 'vue'
-import { nextTick } from 'vue'
+// import { nextTick } from 'vue'
 const { pagetableref, resetQuery, search } = usePageContent()
 const { pagemodalref, addDepartmentclick, editDepartmentclick } = usePageModal()
 //

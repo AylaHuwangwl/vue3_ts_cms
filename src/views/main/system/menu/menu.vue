@@ -1,5 +1,5 @@
 <template>
-  <div class="menu">
+  <div class="custom-menu">
     <page-content :contentConfig="contentConfig"> </page-content>
   </div>
 </template>
@@ -11,6 +11,6 @@ import contentConfig from './config/content.config'
 // const {pagetableref,resetQuery,search} = usePageContent()
 </script>
 <style scoped>
-.menu {
+.custom-menu {
 }
 </style>

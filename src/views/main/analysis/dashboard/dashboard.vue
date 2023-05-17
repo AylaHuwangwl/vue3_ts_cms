@@ -1,8 +1,8 @@
 <template>
-  <div class="dashboard">
+  <div class="custom-dashboard">
     <!-- <h2>dashboard</h2> -->
     <el-row :gutter="10" style="width: 100%">
-      <el-col v-for="item in amountData" :span="6">
+      <el-col v-for="(item, index) in amountData" :span="6" :key="index">
         <count-cards v-bind="item"></count-cards>
       </el-col>
     </el-row>
@@ -98,6 +98,6 @@ const showGoodsAddressSale = computed(() => {
 </script>
 
 <style lang="less" scoped>
-.dashboard {
+.custom-dashboard {
 }
 </style>

@@ -11,9 +11,9 @@
 
 let BASE_URL = ''
 if (import.meta.env.PROD) {
-  BASE_URL = 'http://152.136.185.210:4000/api'
+  BASE_URL = 'http://codercba.com:5000'
 } else {
-  BASE_URL = 'http://152.136.185.210:5000'
+  BASE_URL = 'http://codercba.com:5000'
 }
 
 // 3.通过创建.env文件直接创建变量,加上.local不会放到git仓库  env.development.local

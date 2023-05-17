@@ -1,5 +1,5 @@
 <template>
-  <div class="overview">
+  <div class="custom-overview">
     <h2>overview</h2>
   </div>
 </template>
@@ -7,6 +7,6 @@
 <script setup lang="ts"></script>
 
 <style lang="less" scoped>
-.overview {
+.custom-overview {
 }
 </style>

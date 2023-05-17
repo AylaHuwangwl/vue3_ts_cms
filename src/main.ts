@@ -7,7 +7,7 @@ import pinia from './store'
 import registerIcons from './global/register-icons'
 // 针对ElMessage或ElLoading等组件引入样式,也可以通过下载vite-plugin-style-import插件配置进行自动引入
 import 'element-plus/theme-chalk/el-message.css'
-import userLoginStore from './store/login/login'
+// import userLoginStore from './store/login/login'
 
 // 引入element-plus(全局注册element-plus),全局注册会一起打 包
 /*

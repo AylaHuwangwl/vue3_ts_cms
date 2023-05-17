@@ -37,7 +37,6 @@ export function mapRouterToMenu(usermenu: any[]) {
         if (!firstMenu.length) {
           firstMenu.push(ele)
         }
-
         // console.log(router.currentRoute)
       }
       // console.log(router)

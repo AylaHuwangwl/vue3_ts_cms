@@ -1,12 +1,12 @@
 <template>
-  <div class="list">
-    <h2>list</h2>
+  <div class="custom-list">
+    <h2>custom-list</h2>
   </div>
 </template>
 
-<script setup lang="ts" name="list"></script>
+<script setup lang="ts" name="custom-list"></script>
 
 <style scoped>
-.list {
+.custom-list {
 }
 </style>

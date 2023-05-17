@@ -63,6 +63,7 @@
               v-for="item in roleList"
               :value="item.id"
               :label="item.name"
+              :key="item.id"
             >
               {{ item.name }}
             </el-option>

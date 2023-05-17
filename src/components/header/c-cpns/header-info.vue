@@ -50,7 +50,6 @@
 <script setup lang="ts">
 import { LOGIN_TOKEN } from '@/global/constances'
 import { localCache } from '@/utils/cache'
-import { useRoute } from 'vue-router'
 import router from '@/router/index'
 import userLoginStore from '@/store/login/login'
 function logout() {

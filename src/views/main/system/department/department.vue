@@ -1,5 +1,5 @@
 <template>
-  <div class="department">
+  <div class="custom-department">
     <!-- <h2>department</h2> -->
     <!-- <page-search @resetQuery="resetQuery" @search="search"></page-search> -->
     <page-search
@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts" name="department">
-import { ref } from 'vue'
+// import { ref } from 'vue'
 // 导入子组件
 import pageSearch from '@/components/page-search/page-search.vue'
 import pageContent from '@/components/page-content/page-content.vue'
@@ -58,6 +58,6 @@ const { pagetableref, resetQuery, search } = usePageContent()
 const { pagemodalref, addDepartmentclick, editDepartmentclick } = usePagemodal()
 </script>
 <style scoped>
-.department {
-}
+/* .custom-department {
+} */
 </style>

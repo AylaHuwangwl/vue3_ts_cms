@@ -58,7 +58,7 @@ import { reactive, ref } from 'vue'
 import getRoleAndDepartment from '@/store/main/main'
 import userList from '@/store/main/system/user'
 import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
+// import { computed } from 'vue'
 const modalform = reactive({
   name: undefined,
   parentId: undefined,
@@ -68,7 +68,7 @@ const modalform = reactive({
 const addUserAction = userList()
 const roleAndDepartment = getRoleAndDepartment()
 roleAndDepartment.fetchRoleAndDepartment()
-const { roleList, departmentList } = storeToRefs(roleAndDepartment)
+const { departmentList } = storeToRefs(roleAndDepartment)
 
 const rule: FormRules = {
   name: [

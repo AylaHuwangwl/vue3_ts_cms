@@ -7,8 +7,8 @@ import {
 import type { IAccount } from '../../types/login_types'
 import { localCache } from '@/utils/cache'
 import { LOGIN_TOKEN } from '@/global/constances'
-import router from '@/router'
-import type { RouteRecordRaw } from 'vue-router'
+// import router from '@/router'
+// import type { RouteRecordRaw } from 'vue-router'
 import { mapRouterToMenu, mapMenuToPermission } from '@/utils/map-router'
 interface Iuserinfostore {
   token: string
